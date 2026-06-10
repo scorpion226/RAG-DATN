@@ -1,88 +1,130 @@
-# Hệ thống RAG tra cứu Văn bản Pháp luật / Y tế Việt Nam
+<div align="center">
 
-Đồ án tốt nghiệp — chatbot hỏi-đáp dựa trên kiến trúc **RAG** (Retrieval-Augmented Generation).
+# 🩺⚖️ RAG Tra cứu Văn bản Pháp luật ngành Y tế Việt Nam
 
-## Kiến trúc
+**Chatbot hỏi–đáp dựa trên kiến trúc Retrieval-Augmented Generation (RAG), trả lời kèm trích dẫn số hiệu văn bản — chạy hoàn toàn trên CPU.**
+
+![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
+![PhoBERT](https://img.shields.io/badge/Embedding-PhoBERT-1761d2)
+![ChromaDB](https://img.shields.io/badge/VectorDB-ChromaDB-0d9488)
+![PhoGPT](https://img.shields.io/badge/LLM-PhoGPT--4B-f59e0b)
+![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?logo=fastapi&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
+
+</div>
+
+---
+
+## 📌 Giới thiệu
+
+Hệ thống tra cứu **văn bản quy phạm pháp luật ngành y tế Việt Nam** bằng ngôn ngữ tự nhiên. Người dùng đặt câu hỏi tiếng Việt và nhận câu trả lời **bám sát văn bản gốc, kèm trích dẫn số hiệu** — khắc phục hai điểm yếu cố hữu: tìm kiếm từ khóa không hiểu ngữ nghĩa, và hỏi trực tiếp LLM thì dễ "bịa" và không truy được nguồn.
+
+Toàn bộ pipeline được tối ưu để **chạy trên máy cá nhân (CPU, 16GB RAM, không GPU)**.
+
+## 🎬 Demo
+
+<div align="center">
+<img src="report/figs/web_result.png" alt="Giao diện web demo" width="420">
+
+*Giao diện hỏi–đáp: câu trả lời của PhoGPT kèm các nguồn trích dẫn (số hiệu, loại văn bản, tình trạng hiệu lực, điểm liên quan).*
+</div>
+
+## ✨ Tính năng
+
+- 🔎 **Tìm kiếm ngữ nghĩa** bằng embedding PhoBERT (bi-encoder, 768 chiều) + ChromaDB.
+- 🔀 **Hybrid search** (BM25 + vector, hợp nhất RRF) — bắt đúng cả truy vấn theo **số hiệu văn bản**.
+- 🎯 **Reranker** cross-encoder PhoRanker để xếp hạng lại, tăng độ chính xác.
+- 💬 **Sinh câu trả lời** bằng PhoGPT-4B-Chat (lượng tử hóa GGUF) — có ràng buộc trích dẫn, hạn chế bịa đặt.
+- ✅ Chỉ tư vấn **văn bản còn hiệu lực**; hiển thị nguồn rõ ràng.
+- 🖥️ Giao diện web (React) — lịch sử hội thoại, **chạy offline**.
+
+## 🏗️ Kiến trúc
+
+<div align="center">
+<img src="report/figs/architecture.png" alt="Kiến trúc RAG" width="430">
+</div>
 
 ```
-Câu hỏi
-  │  tách từ (pyvi) + embedding (PhoBERT bi-encoder, 768d)
-  ▼
-ChromaDB  ──tìm top-k cosine + lọc hiệu lực──►  các chunk + metadata
-  │
-  ▼  build prompt (ngữ cảnh + yêu cầu trích dẫn)
-LLM (PhoGPT-4B-Chat / mock)  ──►  câu trả lời + nguồn trích dẫn
+Câu hỏi → tách từ (pyvi) + embedding PhoBERT
+        → [Vector (ChromaDB)  +  BM25]  → RRF + nhận diện số hiệu
+        → Reranker (PhoRanker)  → PhoGPT sinh câu trả lời + trích dẫn
 ```
 
-## Thành phần
+## 📊 Kết quả đánh giá
 
-| File | Vai trò |
-|------|---------|
-| `build_chunks.py` | GĐ1: lọc VB y tế còn hiệu lực, làm sạch, chunk theo "Điều" → `legal_medical_chunks_clean.parquet` |
-| `index_chroma.py` | GĐ2: embedding (PhoBERT) + nạp ChromaDB. Hỗ trợ `limit` + resume |
-| `rag_core.py` | Lõi truy vấn (retrieval) |
-| `llm.py` | Tầng sinh: `mock` (test) / `phogpt` (thật) |
-| `app.py` | Backend FastAPI + phục vụ giao diện |
-| `rerank.py` | Reranker cross-encoder (PhoRanker) — tùy chọn |
-| `build_bm25.py` / `hybrid.py` | Chỉ mục BM25 + truy xuất hybrid (RRF + nhận diện số hiệu VB) |
-| `static/index.html` | Giao diện **React** (SPA): lịch sử hội thoại (localStorage), thẻ nguồn, cài đặt |
-| `static/vendor/` | React + ReactDOM + Babel tải sẵn local → **chạy offline**, không cần internet lúc demo |
-| `eval/` | Bộ đánh giá: `golden_questions.json`, `evaluate.py`, `results.md` |
+Trên bộ 18 câu hỏi vàng (neo vào các luật y tế, có bổ sung văn bản hợp nhất tương đương):
 
-## Số liệu dữ liệu
+| Cấu hình | Hit@1 | Hit@5 | Hit@10 | MRR |
+|----------|:-----:|:-----:|:------:|:---:|
+| Vector + tách từ | 0.389 | 0.833 | 0.944 | 0.586 |
+| Vector + Reranker | 0.500 | 0.889 | 0.889 | 0.644 |
+| Hybrid (BM25+vector) | 0.556 | 0.889 | **1.000** | 0.687 |
+| **Hybrid + Reranker** | **0.556** | **0.944** | 0.944 | **0.722** |
 
-- Nguồn: HF `th1nhng0/vietnamese-legal-documents` (518k VB pháp luật VN).
-- Lọc ngành Y tế: 34,223 VB → còn hiệu lực ("In effect"): **21,490 VB**.
-- Sau chunk theo Điều (~1040 ký tự) + khử trùng lặp: **367,462 chunk**.
+<div align="center">
+<img src="report/figs/retrieval_comparison.png" alt="So sánh cấu hình" width="560">
+</div>
 
-## Cách chạy
+> Chi tiết: [`eval/results.md`](eval/results.md). Mỗi kỹ thuật (tách từ, reranker, hybrid, kích thước chunk) được kiểm chứng bằng **thí nghiệm A/B**.
+
+## 🧰 Công nghệ
+
+| Thành phần | Lựa chọn |
+|---|---|
+| Embedding | `bkai-foundation-models/vietnamese-bi-encoder` (PhoBERT) |
+| Vector DB | ChromaDB (HNSW, cosine) |
+| Lexical | BM25 (`bm25s`) + RRF |
+| Reranker | `itdainb/PhoRanker` |
+| LLM | `vinai/PhoGPT-4B-Chat` (GGUF Q4_K_M, llama.cpp) |
+| Backend / Web | FastAPI + React |
+
+## 📂 Cấu trúc dự án
+
+```
+├── build_chunks.py          # Lọc, làm sạch, chunk theo "Điều"
+├── index_chroma.py          # Embedding PhoBERT + ChromaDB
+├── build_bm25.py            # Chỉ mục BM25
+├── rag_core.py / hybrid.py  # Truy xuất vector / hybrid + nhận diện số hiệu
+├── rerank.py                # Reranker PhoRanker
+├── llm.py                   # Sinh câu trả lời (PhoGPT GGUF)
+├── app.py + static/         # Backend FastAPI + giao diện web
+├── eval/                    # Bộ câu hỏi vàng + đánh giá Hit@k/MRR
+└── report/                  # Báo cáo, hình, kịch bản demo
+```
+
+## 🚀 Cài đặt & chạy
 
 ```bash
-# 1. (Đã chạy) Tạo dữ liệu chunk
-python build_chunks.py
-
-# 2. Tạo index. Index nhỏ để test:
-python index_chroma.py 15000
-#    Hoặc nạp TOÀN BỘ (chạy qua đêm ~13h trên CPU, resume nối tiếp được):
-python index_chroma.py
-
-# 2b. (tùy chọn, khuyến nghị) Xây chỉ mục BM25 cho hybrid search
-python build_bm25.py           # tạo bm25_index/ + bm25_meta.pkl
-
-# 3a. (1 lần) Cài llama-cpp-python bản prebuilt CPU + tải PhoGPT GGUF
+# 1. Cài thư viện
+pip install -r requirements.txt
 pip install llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
-python download_gguf.py        # tải models/PhoGPT-4B-Chat-Q4_K_M.gguf (2.36GB)
 
-# 3b. Chạy web. Cấu hình tốt nhất = PhoGPT + hybrid + reranker (Windows PowerShell):
-$env:LLM_MODE="gguf"; $env:USE_HYBRID="1"; $env:USE_RERANK="1"; uvicorn app:app --port 8000
-#    Tối giản (vector thuần, mock LLM):  uvicorn app:app --port 8000
-#    Hoặc chế độ test nhanh không cần LLM:  uvicorn app:app --port 8000  (LLM_MODE=mock mặc định)
+# 2. Tạo dữ liệu & chỉ mục (dữ liệu tải tự động từ Hugging Face)
+python build_chunks.py        # -> legal_medical_chunks_clean.parquet
+python index_chroma.py        # -> chroma_db/  (embedding, ~13h trên CPU, resume được)
+python build_bm25.py          # -> bm25_index/
+python download_gguf.py       # -> models/PhoGPT-4B-Chat-Q4_K_M.gguf (2.36GB)
+
+# 3. Chạy web (PowerShell)
+$env:LLM_MODE="gguf"; $env:USE_HYBRID="1"; $env:USE_RERANK="1"
+uvicorn app:app --port 8000
 # Mở http://localhost:8000
-
-# 4. Đánh giá định lượng retrieval (cần index xong)
-python eval/evaluate.py                # baseline (có tách từ)
-python eval/evaluate.py --no-segment   # nhánh A/B: không tách từ
-python eval/evaluate.py --rerank       # có reranker
-# Xem kết quả tổng hợp ở eval/results.md
 ```
 
-> ⏱️ Lần hỏi đầu mất ~90s nạp model (1 lần); các câu sau ~20–40s sinh trên CPU.
-> LLM_MODE: `mock` (test, không cần model) · `gguf` (PhoGPT Q4_K_M qua llama.cpp, khuyến nghị) · `phogpt` (fp32 transformers, ~16GB RAM).
+> ⏱️ Câu hỏi đầu tiên mất ~90s nạp mô hình; các câu sau ~20–40s (CPU).
+> 📄 Kịch bản demo & các tình huống thử nghiệm: [`DEMO_SCRIPT.md`](DEMO_SCRIPT.md).
 
-## Lý do thiết kế (cho báo cáo — kèm cách chứng minh)
+## 📈 Dữ liệu
 
-| Quyết định | Lý do | Cách chứng minh |
-|---|---|---|
-| Chunk theo "Điều", ~1200 ký tự | Đơn vị ngữ nghĩa pháp luật; chunk 500 ký tự cắt giữa câu | Thí nghiệm A/B: recall@k với chunk 500 vs 1200 vs theo-Điều |
-| Giữ số hiệu VB (`/ -`) | Định danh để trích dẫn & tra cứu chính xác | So sánh truy vấn hỏi theo số hiệu VB |
-| Embedding bi-encoder PhoBERT | PhoBERT gốc là masked-LM, không tối ưu cho retrieval | So recall: bkai bi-encoder vs PhoBERT [CLS] thuần |
-| Tách từ pyvi trước embedding | PhoBERT huấn luyện trên text đã tách từ | A/B: recall có vs không tách từ |
-| Khử trùng lặp chunk | Boilerplate lặp làm nhiễu top-k | Đếm % chunk trùng bị loại (9,131) |
-| Lọc `effect_status="In effect"` | Chatbot pháp luật chỉ nên tư vấn VB còn hiệu lực | Định tính: tránh trích dẫn VB hết hiệu lực |
+- Nguồn: [`th1nhng0/vietnamese-legal-documents`](https://huggingface.co/datasets/th1nhng0/vietnamese-legal-documents) — 518k văn bản pháp luật VN.
+- Lọc ngành y tế còn hiệu lực: **21.490 văn bản → 367.462 đoạn (chunk)** sau khi làm sạch & khử trùng lặp.
 
-## Hướng phát triển
+## 🔭 Hướng phát triển
 
-- Reranker (cross-encoder) sau retrieval để tăng độ chính xác top-k.
-- Hybrid search (BM25 + vector) cho truy vấn theo số hiệu/từ khóa.
-- Đánh giá định lượng: bộ câu hỏi-đáp chuẩn, đo recall@k, MRR, faithfulness.
-- Contextual chunking: thêm tiêu đề VB vào đầu mỗi chunk khi embedding.
+- Mở rộng bộ đánh giá; đo độ trung thực (faithfulness) tự động.
+- Contextual chunking; hỗ trợ hội thoại đa lượt.
+- Mở rộng sang các lĩnh vực pháp luật khác.
+
+## 📜 Giấy phép
+
+[MIT](LICENSE) © 2026 Nguyễn Minh Hiếu — Đồ án tốt nghiệp, Khoa CNTT, Trường Đại học Thủy lợi.
