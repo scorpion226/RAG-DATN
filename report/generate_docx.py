@@ -200,7 +200,9 @@ def main():
         body(doc, s, justify=False, indent=False)
     p = doc.add_paragraph(); p.alignment = WD_ALIGN_PARAGRAPH.CENTER; p.paragraph_format.space_before = Pt(12)
     _set_font(p.add_run("DANH MỤC BẢNG BIỂU"), 14, bold=True)
-    for s in ["Bảng 2.1. Phân bố loại văn bản trong corpus",
+    for s in ["Bảng 1.1. So sánh các hướng tiếp cận trả lời câu hỏi chuyên ngành",
+              "Bảng 2.1. Phân bố loại văn bản trong corpus",
+              "Bảng 3.1. Các module chính của hệ thống",
               "Bảng 4.1. So sánh các cấu hình truy xuất",
               "Bảng 4.2. Ảnh hưởng của kích thước chunk"]:
         body(doc, s, justify=False, indent=False)
@@ -239,11 +241,23 @@ def main():
     body(doc, "RAG [1] là kiến trúc kết hợp hai khối: bộ truy xuất (Retriever) lấy về các đoạn tri thức liên quan từ một kho ngoài, và bộ sinh (Generator) — thường là một LLM — tạo câu trả lời dựa trên câu hỏi cùng các đoạn truy xuất được. So với việc tinh chỉnh (fine-tuning) toàn bộ tri thức vào tham số mô hình, RAG có ba ưu điểm: cập nhật tri thức chỉ cần thay đổi kho dữ liệu; câu trả lời có thể trích dẫn nguồn; và giảm đáng kể hiện tượng bịa đặt do mô hình bị “ràng buộc” vào ngữ cảnh được cung cấp.")
     figure(doc, os.path.join(FIGS, "architecture.png"), "Hình 1.1. Kiến trúc tổng thể hệ thống RAG", 10.5)
     body(doc, "Một pipeline RAG điển hình gồm các bước: chia nhỏ tài liệu thành đoạn (chunking), mã hóa đoạn thành vector (embedding) và lưu vào cơ sở dữ liệu vector; khi có câu hỏi, mã hóa câu hỏi, truy xuất k đoạn gần nhất, (tùy chọn) xếp hạng lại, rồi đưa vào prompt để LLM sinh câu trả lời. Mỗi bước đều ảnh hưởng tới chất lượng cuối cùng và sẽ được phân tích, kiểm chứng ở các chương sau.")
+    body(doc, "Có ba hướng tiếp cận chính để một mô hình ngôn ngữ trả lời câu hỏi chuyên ngành: (1) chỉ dùng LLM với tri thức sẵn có trong tham số; (2) tinh chỉnh (fine-tuning) LLM trên dữ liệu chuyên ngành; và (3) RAG. Bảng 1.1 so sánh ba hướng theo các tiêu chí quan trọng với bài toán pháp luật.")
+    table(doc, ["Tiêu chí", "LLM thuần", "Fine-tuning", "RAG"],
+          [["Cập nhật tri thức", "Khó", "Huấn luyện lại", "Đổi kho dữ liệu"],
+           ["Trích dẫn nguồn", "Không", "Không", "Có"],
+           ["Nguy cơ bịa đặt", "Cao", "Trung bình", "Thấp"],
+           ["Chi phí tài nguyên", "Thấp", "Rất cao", "Trung bình"]],
+          caption="Bảng 1.1. So sánh các hướng tiếp cận trả lời câu hỏi chuyên ngành")
+    body(doc, "Với miền pháp luật — nơi câu trả lời bắt buộc phải kiểm chứng được và tri thức thay đổi liên tục — RAG là lựa chọn hợp lý nhất: vừa cập nhật dễ, vừa cho phép trích dẫn, vừa giảm bịa đặt mà không đòi hỏi tài nguyên huấn luyện lớn.")
     H2(doc, "1.2. Biểu diễn ngữ nghĩa văn bản bằng embedding")
     H3(doc, "1.2.1. Mô hình PhoBERT và đặc thù tiếng Việt")
-    body(doc, "PhoBERT [2] là mô hình ngôn ngữ tiền huấn luyện cho tiếng Việt theo kiến trúc RoBERTa, huấn luyện trên kho ngữ liệu tiếng Việt quy mô lớn. Một đặc điểm quan trọng: PhoBERT được huấn luyện trên dữ liệu đã được tách từ (word segmentation). Tiếng Việt là ngôn ngữ đơn lập, ranh giới “từ” không trùng với khoảng trắng — ví dụ “Bộ Y tế” là một từ ghép gồm ba âm tiết. Do đó, để khai thác đúng PhoBERT, đầu vào lúc suy luận cũng phải được tách từ bằng công cụ như pyvi, tạo dạng “Bộ_Y_tế”.")
+    body(doc, "Các mô hình ngôn ngữ hiện đại dựa trên kiến trúc Transformer với cơ chế tự chú ý (self-attention), cho phép mô hình cân nhắc mối liên hệ giữa mọi cặp từ trong câu, từ đó nắm bắt ngữ cảnh tốt hơn các mạng tuần tự truyền thống. BERT là mô hình mã hóa hai chiều, được tiền huấn luyện theo tác vụ che từ (masked language modeling) trên kho văn bản lớn, sau đó có thể tinh chỉnh cho nhiều tác vụ hạ nguồn.")
+    body(doc, "PhoBERT [2] là mô hình ngôn ngữ tiền huấn luyện cho tiếng Việt theo kiến trúc RoBERTa, huấn luyện trên kho ngữ liệu tiếng Việt quy mô lớn. Một đặc điểm quan trọng: PhoBERT được huấn luyện trên dữ liệu đã được tách từ (word segmentation). Tiếng Việt là ngôn ngữ đơn lập, ranh giới “từ” không trùng với khoảng trắng — ví dụ “Bộ Y tế” là một từ ghép gồm ba âm tiết. Do đó, để khai thác đúng PhoBERT, đầu vào lúc suy luận cũng phải được tách từ bằng công cụ như pyvi, tạo dạng “Bộ_Y_tế”; nếu không, embedding sẽ lệch khỏi phân phối lúc huấn luyện và làm giảm chất lượng (sẽ được kiểm chứng ở Thí nghiệm 1).")
     H3(doc, "1.2.2. Bi-encoder và lý do không dùng PhoBERT trực tiếp")
-    body(doc, "PhoBERT gốc là mô hình masked language model; vector tại token [CLS] của nó không được tối ưu để đo độ tương đồng ngữ nghĩa giữa hai câu. Theo hướng Sentence-BERT [4], cần tinh chỉnh mô hình theo kiến trúc bi-encoder (hai nhánh chia sẻ trọng số, huấn luyện tương phản) để vector câu phản ánh tốt độ tương đồng. Đề tài sử dụng mô hình vietnamese-bi-encoder [7] (dựa trên PhoBERT, vector 768 chiều) — đây là cách dùng đúng cho bài toán tìm kiếm ngữ nghĩa. Độ tương đồng giữa hai vector u, v được đo bằng cosine: cos(u,v) = (u·v)/(‖u‖‖v‖).")
+    body(doc, "PhoBERT gốc là mô hình masked language model; vector tại token [CLS] của nó không được tối ưu để đo độ tương đồng ngữ nghĩa giữa hai câu. Theo hướng Sentence-BERT [4], cần tinh chỉnh mô hình theo kiến trúc bi-encoder: hai câu được đưa qua cùng một mạng (chia sẻ trọng số), gộp các vector token (pooling) thành một vector câu, rồi huấn luyện theo mục tiêu tương phản (contrastive) — kéo gần các cặp liên quan và đẩy xa các cặp không liên quan. Nhờ vậy, khoảng cách trong không gian vector phản ánh đúng độ tương đồng ngữ nghĩa.")
+    body(doc, "Đề tài sử dụng mô hình vietnamese-bi-encoder [7] (dựa trên PhoBERT, vector 768 chiều) — đây là cách dùng đúng cho bài toán tìm kiếm ngữ nghĩa. Độ tương đồng giữa hai vector u, v được đo bằng cosine:")
+    formula(doc, "cos(u, v) = (u · v) / (‖u‖ · ‖v‖),  giá trị trong [-1, 1].")
+    body(doc, "Ưu điểm của bi-encoder là mã hóa đoạn MỘT LẦN khi lập chỉ mục, sau đó truy vấn rất nhanh; nhược điểm là mã hóa câu hỏi và đoạn độc lập nên kém tinh tế — hạn chế này được khắc phục bằng reranker (Mục 1.5).")
     H2(doc, "1.3. Cơ sở dữ liệu vector và tìm kiếm lân cận gần đúng")
     body(doc, "Sau khi mã hóa, mỗi đoạn trở thành một điểm trong không gian 768 chiều. Truy xuất là tìm k điểm gần câu hỏi nhất theo cosine. Với hàng trăm nghìn vector, tìm kiếm vét cạn quá chậm, nên dùng chỉ mục lân cận gần đúng (Approximate Nearest Neighbor). ChromaDB [9] sử dụng thuật toán HNSW (Hierarchical Navigable Small World) — một đồ thị phân tầng cho phép truy vấn gần đúng với độ chính xác cao và tốc độ thực tế cao. ChromaDB còn lưu kèm metadata (số hiệu, loại văn bản, tình trạng hiệu lực…), cho phép lọc ngay trong truy vấn (ví dụ chỉ lấy văn bản còn hiệu lực).")
     H2(doc, "1.4. Tìm kiếm từ vựng BM25 và truy xuất hybrid")
@@ -304,9 +318,19 @@ def main():
     H2(doc, "3.3. Lập chỉ mục và khả năng phục hồi")
     body(doc, "Việc tạo embedding cho 367.462 đoạn trên CPU mất khoảng 13 giờ (tốc độ ~7,7 đoạn/giây). Để không phụ thuộc một phiên chạy liên tục, module lập chỉ mục ghi dần kết quả vào ChromaDB và hỗ trợ phục hồi (resume): khi chạy lại, hệ thống bỏ qua số đoạn đã nạp và tiếp tục từ vị trí dang dở. Dữ liệu được xử lý theo lô (batch) và theo luồng (streaming) để giữ mức tiêu thụ RAM thấp, phù hợp ràng buộc 16GB.")
     H2(doc, "3.4. Thiết kế truy xuất hybrid")
-    body(doc, "Module hybrid lấy top-N ứng viên từ mỗi nguồn (vector và BM25), hợp nhất theo RRF, rồi nếu phát hiện số hiệu văn bản trong câu hỏi sẽ truy vấn trực tiếp các đoạn thuộc đúng văn bản đó và cộng điểm ưu tiên. Sau đó (tùy chọn) đưa các ứng viên qua reranker để chọn k đoạn cuối. Cơ chế lọc theo tình trạng hiệu lực được áp dụng nhất quán ở cả hai nguồn để bảo đảm chỉ trả về văn bản còn hiệu lực.")
+    body(doc, "Module hybrid hoạt động theo các bước: (1) lấy top-N ứng viên từ truy xuất vector (ChromaDB) và top-N từ BM25; (2) hợp nhất hai danh sách bằng Reciprocal Rank Fusion, cộng điểm theo thứ hạng của mỗi tài liệu trong từng danh sách; (3) dùng biểu thức chính quy phát hiện số hiệu văn bản trong câu hỏi — nếu có, truy vấn trực tiếp các đoạn thuộc đúng văn bản đó từ ChromaDB và cộng điểm ưu tiên lớn; (4) lọc theo tình trạng hiệu lực; (5) (tùy chọn) đưa các ứng viên qua reranker để chọn k đoạn cuối. Bước (3) là điểm mấu chốt giúp hệ thống trả lời chính xác khi người dùng hỏi theo số hiệu — trường hợp mà tìm kiếm vector thuần thường thất bại.")
     H2(doc, "3.5. Thiết kế prompt và kiểm soát sinh")
-    body(doc, "Prompt đưa vào PhoGPT gồm phần chỉ dẫn (chỉ dựa vào ngữ cảnh, bắt buộc trích dẫn số hiệu, nói rõ khi không tìm thấy thông tin), phần ngữ cảnh (các đoạn truy xuất, mỗi đoạn kèm số hiệu và tiêu đề nguồn), và câu hỏi. Cách thiết kế này nhằm “neo” câu trả lời vào ngữ cảnh, giảm bịa đặt và buộc mô hình dẫn nguồn — yêu cầu cốt lõi với miền pháp luật.")
+    body(doc, "Prompt đưa vào PhoGPT gồm ba phần: (i) chỉ dẫn hệ thống, (ii) ngữ cảnh là các đoạn truy xuất được (mỗi đoạn kèm số hiệu và tiêu đề nguồn), (iii) câu hỏi của người dùng. Cấu trúc prompt được minh họa như sau:")
+    code = ("### Câu hỏi:\n"
+            "Bạn là trợ lý tra cứu văn bản pháp luật ngành y tế. CHỈ dựa vào các văn bản "
+            "được cung cấp để trả lời. Luôn trích dẫn số hiệu văn bản. Nếu thông tin không "
+            "có trong văn bản, hãy nói rõ là không tìm thấy.\n\n"
+            "=== VĂN BẢN THAM KHẢO ===\n[1] <số hiệu> — <tiêu đề>\n<nội dung đoạn>\n...\n\n"
+            "=== CÂU HỎI ===\n<câu hỏi của người dùng>\n\n### Trả lời:")
+    p = doc.add_paragraph(); p.paragraph_format.left_indent = Cm(1.0)
+    p.paragraph_format.space_after = Pt(6)
+    r = p.add_run(code); r.font.name = "Consolas"; r.font.size = Pt(11)
+    body(doc, "Cách thiết kế này nhằm “neo” câu trả lời vào ngữ cảnh được cung cấp, buộc mô hình trích dẫn nguồn và thừa nhận khi không có thông tin — qua đó giảm hiện tượng bịa đặt, vốn là rủi ro lớn nhất khi áp dụng LLM cho miền pháp luật.")
     H2(doc, "3.6. Backend và giao diện web")
     body(doc, "Backend dùng FastAPI cung cấp các điểm cuối: trang giao diện, /chat (nhận câu hỏi, trả về câu trả lời và nguồn), /health (trạng thái chỉ mục và cấu hình). Giao diện là một ứng dụng web đơn trang (SPA) bằng React, hiển thị hội thoại dạng chat, lưu lịch sử ở phía trình duyệt, và hiển thị các thẻ nguồn (số hiệu, loại văn bản, tình trạng hiệu lực, điểm liên quan, trích đoạn). Các thư viện front-end được đóng gói cục bộ để giao diện hoạt động ngay cả khi không có Internet — thuận lợi khi trình diễn và bảo vệ.")
     figure(doc, os.path.join(FIGS, "web_result.png"), "Hình 3.1. Giao diện web demo: câu trả lời của PhoGPT kèm các nguồn trích dẫn", 11)
@@ -340,7 +364,9 @@ def main():
     body(doc, "So sánh (2), (4) và (5): hybrid BM25+vector nâng Hit@1 lên 0,556 và đạt Hit@10 = 1,000 (tìm thấy văn bản liên quan trong top-10 cho mọi câu hỏi); kết hợp thêm reranker cho MRR cao nhất 0,722 và Hit@5 0,944. Quan trọng hơn về mặt định tính: với truy vấn chứa số hiệu (ví dụ “Nghị định 96/2023/NĐ-CP quy định gì?”), cơ chế hybrid kèm nhận diện số hiệu trả về đúng văn bản, trong khi vector thuần thường trượt do không nắm được chuỗi số hiệu. Đây là minh chứng rõ cho luận điểm BM25 bù đắp điểm yếu từ vựng của embedding (Mục 1.4).")
     H2(doc, "4.7. Phân tích lỗi và bàn luận")
     body(doc, "Phân tích các câu bị trượt cho thấy hai nguyên nhân chính. Thứ nhất, một số câu hỏi gần với văn bản dưới luật (thông tư, quyết định của Cục/Bộ) hơn là luật gốc, khiến hệ thống xếp văn bản dưới luật lên trên — về mặt nội dung không hẳn sai. Thứ hai, vấn đề ground-truth: trước khi bổ sung các Văn bản hợp nhất tương đương, baseline chỉ đạt Hit@1 = 0,222; sau khi bổ sung tăng lên 0,389. Điều này cho thấy chỉ số ban đầu đã đánh giá thấp năng lực thực của hệ thống, và việc xây dựng ground-truth cẩn thận (tính đến VBHN) là cần thiết để đánh giá công bằng trong miền pháp luật.")
-    body(doc, "Về phần sinh (RQ3), với câu hỏi “Điều kiện để cá nhân được phép khám bệnh, chữa bệnh?”, PhoGPT trả lời bám đúng Điều 19 Luật Khám bệnh, chữa bệnh 2023 (15/2023/QH15): cần có giấy phép hành nghề còn hiệu lực và đã đăng ký hành nghề, kèm trích dẫn số hiệu và không bịa thông tin ngoài ngữ cảnh. Thời gian sinh khoảng 20–40 giây/câu trên CPU — chấp nhận được cho mục đích tra cứu, dù chưa đạt thời gian thực.")
+    body(doc, "Về phần sinh (RQ3), với câu hỏi “Điều kiện để cá nhân được phép khám bệnh, chữa bệnh?”, PhoGPT trả lời bám đúng Điều 19 Luật Khám bệnh, chữa bệnh 2023 (15/2023/QH15): cần có giấy phép hành nghề còn hiệu lực và đã đăng ký hành nghề, kèm trích dẫn số hiệu và không bịa thông tin ngoài ngữ cảnh.")
+    H2(doc, "4.8. Thời gian phản hồi và tài nguyên")
+    body(doc, "Toàn bộ hệ thống vận hành trên CPU với 16GB RAM. Các mốc thời gian đo được: lập chỉ mục embedding đạt khoảng 7,7 đoạn/giây (toàn corpus 367.462 đoạn mất khoảng 13 giờ, chạy nền và có khả năng resume); nạp mô hình lần đầu khoảng 90 giây; sinh câu trả lời khoảng 20–40 giây mỗi câu (PhoGPT lượng tử hóa Q4). Mức thời gian này chấp nhận được cho mục đích tra cứu tham khảo, dù chưa đạt thời gian thực; có thể rút ngắn đáng kể nếu triển khai trên GPU hoặc dùng dịch vụ sinh. Việc lượng tử hóa GGUF Q4 là yếu tố then chốt giúp mô hình 3,7 tỷ tham số chạy được trong giới hạn 16GB RAM.")
 
     # ----------------------------- CHƯƠNG 5 -----------------------------
     H1(doc, "CHƯƠNG 5. KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN")
