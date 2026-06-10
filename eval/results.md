@@ -49,3 +49,19 @@ số hiệu văn bản (regex) → tiêm thẳng chunk đúng số hiệu (vecto
 
 Chunk 500 → gấp ~2,3× số chunk nhưng Hit@1/MRR thấp hơn. Chunk ~1200/theo-Điều hiệu quả hơn.
 Hạn chế: mẫu nhỏ → chỉ số bão hòa; điểm phân biệt chính là chi phí (số chunk).
+
+## Thí nghiệm 4 — Precision/Recall, số nguồn k, thời gian, trích dẫn (experiment_full.py)
+
+Cấu hình Hybrid + Reranker, mức văn bản:
+
+| k | Precision | Recall | F1 |
+|---|----------:|-------:|---:|
+| 1 | 0.556 | 0.366 | 0.441 |
+| 3 | 0.389 | 0.625 | **0.480** |
+| 5 | 0.267 | 0.681 | 0.384 |
+| 10 | 0.144 | 0.722 | 0.240 |
+
+- F1 cực đại tại **k=3** → lấy 3–5 nguồn là cân bằng tốt (đánh đổi Precision↓/Recall↑).
+- **Thời gian (CPU):** truy xuất TB ~9,0s; sinh TB ~52,1s (dao động 31–113s).
+- **Mức độ trích dẫn:** 6/6 câu sinh (100%) trích dẫn đúng văn bản liên quan; bám điều luật (Điều 19/33/79).
+- Quan sát: mô hình đôi khi nêu chi tiết phụ chưa chính xác (vd nhắc "Luật 2009" dù nguồn là 15/2023/QH15) → RAG giảm nhưng chưa loại bỏ hết sai sót phần sinh.

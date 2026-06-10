@@ -196,7 +196,11 @@ def main():
     _set_font(p.add_run("DANH MỤC HÌNH VẼ"), 14, bold=True)
     for s in ["Hình 1.1. Kiến trúc tổng thể hệ thống RAG",
               "Hình 2.1. Quy trình lọc dữ liệu",
-              "Hình 4.1. Biểu đồ so sánh chất lượng truy xuất giữa các cấu hình"]:
+              "Hình 3.1. Lược đồ tuần tự xử lý một câu hỏi",
+              "Hình 3.2. Giao diện web demo",
+              "Hình 4.1. So sánh chất lượng truy xuất giữa các cấu hình",
+              "Hình 4.2. Precision/Recall/F1 theo số nguồn k",
+              "Hình 4.3. Thời gian phản hồi trung bình"]:
         body(doc, s, justify=False, indent=False)
     p = doc.add_paragraph(); p.alignment = WD_ALIGN_PARAGRAPH.CENTER; p.paragraph_format.space_before = Pt(12)
     _set_font(p.add_run("DANH MỤC BẢNG BIỂU"), 14, bold=True)
@@ -204,7 +208,8 @@ def main():
               "Bảng 2.1. Phân bố loại văn bản trong corpus",
               "Bảng 3.1. Các module chính của hệ thống",
               "Bảng 4.1. So sánh các cấu hình truy xuất",
-              "Bảng 4.2. Ảnh hưởng của kích thước chunk"]:
+              "Bảng 4.2. Ảnh hưởng của kích thước chunk",
+              "Bảng 4.3. Precision/Recall/F1 theo số nguồn k"]:
         body(doc, s, justify=False, indent=False)
 
     # ===================== SECTION 2: NỘI DUNG (số Ả Rập) =====================
@@ -313,7 +318,8 @@ def main():
     # ----------------------------- CHƯƠNG 3 -----------------------------
     H1(doc, "CHƯƠNG 3. THIẾT KẾ VÀ TRIỂN KHAI HỆ THỐNG")
     H2(doc, "3.1. Kiến trúc tổng thể và luồng xử lý")
-    body(doc, "Hệ thống được tổ chức theo các module rời, mỗi module đảm nhiệm một giai đoạn của pipeline RAG (xem lại Hình 1.1). Luồng xử lý một câu hỏi gồm: tách từ và mã hóa câu hỏi; truy xuất song song từ ChromaDB (vector) và BM25 (từ vựng); hợp nhất bằng RRF kèm nhận diện số hiệu; xếp hạng lại bằng PhoRanker để chọn k đoạn tốt nhất; dựng prompt và sinh câu trả lời bằng PhoGPT; cuối cùng trả về câu trả lời kèm danh sách nguồn.")
+    body(doc, "Hệ thống được tổ chức theo các module rời, mỗi module đảm nhiệm một giai đoạn của pipeline RAG (xem lại Hình 1.1). Luồng xử lý một câu hỏi gồm: tách từ và mã hóa câu hỏi; truy xuất song song từ ChromaDB (vector) và BM25 (từ vựng); hợp nhất bằng RRF kèm nhận diện số hiệu; xếp hạng lại bằng PhoRanker để chọn k đoạn tốt nhất; dựng prompt và sinh câu trả lời bằng PhoGPT; cuối cùng trả về câu trả lời kèm danh sách nguồn. Trình tự tương tác giữa các thành phần được thể hiện ở Hình 3.1.")
+    figure(doc, os.path.join(FIGS, "sequence.png"), "Hình 3.1. Lược đồ tuần tự xử lý một câu hỏi", 15)
     H2(doc, "3.2. Các module và vai trò")
     table(doc, ["Module (tệp)", "Vai trò"],
           [["build_chunks.py", "Lọc, làm sạch, chia đoạn dữ liệu → tệp Parquet"],
@@ -342,7 +348,7 @@ def main():
     body(doc, "Cách thiết kế này nhằm “neo” câu trả lời vào ngữ cảnh được cung cấp, buộc mô hình trích dẫn nguồn và thừa nhận khi không có thông tin — qua đó giảm hiện tượng bịa đặt, vốn là rủi ro lớn nhất khi áp dụng LLM cho miền pháp luật.")
     H2(doc, "3.6. Backend và giao diện web")
     body(doc, "Backend dùng FastAPI cung cấp các điểm cuối: trang giao diện, /chat (nhận câu hỏi, trả về câu trả lời và nguồn), /health (trạng thái chỉ mục và cấu hình). Giao diện là một ứng dụng web đơn trang (SPA) bằng React, hiển thị hội thoại dạng chat, lưu lịch sử ở phía trình duyệt, và hiển thị các thẻ nguồn (số hiệu, loại văn bản, tình trạng hiệu lực, điểm liên quan, trích đoạn). Các thư viện front-end được đóng gói cục bộ để giao diện hoạt động ngay cả khi không có Internet — thuận lợi khi trình diễn và bảo vệ.")
-    figure(doc, os.path.join(FIGS, "web_result.png"), "Hình 3.1. Giao diện web demo: câu trả lời của PhoGPT kèm các nguồn trích dẫn", 11)
+    figure(doc, os.path.join(FIGS, "web_result.png"), "Hình 3.2. Giao diện web demo: câu trả lời của PhoGPT kèm các nguồn trích dẫn", 11)
     body(doc, "Backend cung cấp các điểm cuối (endpoint) chính như Bảng 3.2; cấu hình (chế độ LLM, bật/tắt hybrid và reranker) được điều khiển qua biến môi trường, thuận tiện cho việc thử nghiệm các cấu hình khác nhau khi đánh giá.")
     table(doc, ["Endpoint", "Phương thức", "Chức năng"],
           [["/", "GET", "Trả về trang giao diện web (SPA React)"],
@@ -382,8 +388,22 @@ def main():
     body(doc, "Phân tích các câu bị trượt cho thấy hai nguyên nhân chính. Thứ nhất, một số câu hỏi gần với văn bản dưới luật (thông tư, quyết định của Cục/Bộ) hơn là luật gốc, khiến hệ thống xếp văn bản dưới luật lên trên — về mặt nội dung không hẳn sai. Ví dụ, câu “Những hành vi bị nghiêm cấm trong hoạt động dược?” trả về top-1 là một quyết định của Cục Quản lý Dược thay vì Luật Dược; câu về tiêm chủng trả về Nghị định 104/2016/NĐ-CP (nghị định chuyên về tiêm chủng) — thực chất rất sát nội dung, dù không trùng số hiệu luật được gán nhãn.")
     body(doc, "Thứ hai, vấn đề ground-truth: trước khi bổ sung các Văn bản hợp nhất (VBHN) tương đương, baseline chỉ đạt Hit@1 = 0,222; sau khi bổ sung tăng lên 0,389. Cụ thể, câu về an toàn thực phẩm trả về 61/VBHN-VPQH (bản hợp nhất Luật An toàn thực phẩm) và câu về HIV trả về 33/VBHN-VPQH (bản hợp nhất Luật phòng, chống HIV/AIDS) — đúng nội dung nhưng khác số hiệu. Điều này cho thấy chỉ số ban đầu đã đánh giá thấp năng lực thực của hệ thống, và việc xây dựng ground-truth cẩn thận (tính đến VBHN) là cần thiết để đánh giá công bằng trong miền pháp luật.")
     body(doc, "Về phần sinh (RQ3), với câu hỏi “Điều kiện để cá nhân được phép khám bệnh, chữa bệnh?”, PhoGPT trả lời bám đúng Điều 19 Luật Khám bệnh, chữa bệnh 2023 (15/2023/QH15): cần có giấy phép hành nghề còn hiệu lực và đã đăng ký hành nghề, kèm trích dẫn số hiệu và không bịa thông tin ngoài ngữ cảnh.")
-    H2(doc, "4.8. Thời gian phản hồi và tài nguyên")
-    body(doc, "Toàn bộ hệ thống vận hành trên CPU với 16GB RAM. Các mốc thời gian đo được: lập chỉ mục embedding đạt khoảng 7,7 đoạn/giây (toàn corpus 367.462 đoạn mất khoảng 13 giờ, chạy nền và có khả năng resume); nạp mô hình lần đầu khoảng 90 giây; sinh câu trả lời khoảng 20–40 giây mỗi câu (PhoGPT lượng tử hóa Q4). Mức thời gian này chấp nhận được cho mục đích tra cứu tham khảo, dù chưa đạt thời gian thực; có thể rút ngắn đáng kể nếu triển khai trên GPU hoặc dùng dịch vụ sinh. Việc lượng tử hóa GGUF Q4 là yếu tố then chốt giúp mô hình 3,7 tỷ tham số chạy được trong giới hạn 16GB RAM.")
+    H2(doc, "4.8. Precision, Recall và ảnh hưởng của số nguồn k")
+    body(doc, "Bên cạnh Hit@k và MRR, đề tài đo Precision@k và Recall@k ở mức văn bản (sau khi gộp các đoạn về số hiệu văn bản) cho cấu hình Hybrid + Reranker, đồng thời khảo sát ảnh hưởng của số nguồn k truyền cho mô hình (Bảng 4.3, Hình 4.2).")
+    table(doc, ["k", "Precision@k", "Recall@k", "F1@k"],
+          [["1", "0,556", "0,366", "0,441"],
+           ["3", "0,389", "0,625", "0,480"],
+           ["5", "0,267", "0,681", "0,384"],
+           ["10", "0,144", "0,722", "0,240"]],
+          caption="Bảng 4.3. Precision/Recall/F1 theo số nguồn k")
+    figure(doc, os.path.join(FIGS, "precision_recall_k.png"), "Hình 4.2. Precision/Recall/F1 theo số nguồn k", 13)
+    body(doc, "Kết quả thể hiện rõ đánh đổi kinh điển: khi k tăng, Recall tăng (lấy về nhiều văn bản đúng hơn) nhưng Precision giảm (nhiều nhiễu hơn). F1 đạt cực đại tại k = 3 (0,480), cho thấy lấy khoảng 3–5 nguồn là cân bằng tốt giữa độ phủ và độ chính xác — phù hợp để truyền vào mô hình sinh mà không làm loãng ngữ cảnh.")
+    H2(doc, "4.9. Thời gian phản hồi và tài nguyên")
+    body(doc, "Toàn bộ hệ thống vận hành trên CPU với 16GB RAM. Các mốc thời gian đo được trên bộ câu hỏi: lập chỉ mục embedding đạt khoảng 7,7 đoạn/giây (toàn corpus 367.462 đoạn mất khoảng 13 giờ, chạy nền và có khả năng resume); thời gian truy xuất trung bình (gồm cả bước reranker) khoảng 9 giây/câu; thời gian sinh câu trả lời trung bình khoảng 52 giây/câu (dao động 31–113 giây tùy độ dài). Mức thời gian này chấp nhận được cho mục đích tra cứu tham khảo, dù chưa đạt thời gian thực; có thể rút ngắn đáng kể nếu triển khai trên GPU. Việc lượng tử hóa GGUF Q4 là yếu tố then chốt giúp mô hình 3,7 tỷ tham số chạy được trong giới hạn 16GB RAM.")
+    figure(doc, os.path.join(FIGS, "latency.png"), "Hình 4.3. Thời gian phản hồi trung bình (truy xuất và sinh)", 9)
+    H2(doc, "4.10. Chất lượng câu trả lời và mức độ trích dẫn")
+    body(doc, "Để đánh giá phần sinh, đề tài chạy đầy đủ pipeline (Hybrid + Reranker + PhoGPT) trên 6 câu hỏi và rà soát thủ công. Kết quả: 6/6 câu trả lời (tỉ lệ 100%) trích dẫn đúng ít nhất một văn bản liên quan trong số nguồn truy xuất; các câu trả lời bám sát điều luật cụ thể (ví dụ Điều 19 Luật Khám bệnh chữa bệnh, Điều 33 và Điều 79 Luật Dược) và không bịa thông tin ngoài ngữ cảnh.")
+    body(doc, "Hạn chế quan sát được: mô hình thỉnh thoảng nêu chi tiết phụ chưa chính xác (ví dụ một câu trả lời nhắc “Luật Khám bệnh, chữa bệnh 2009” trong khi nguồn trích dẫn là Luật 15/2023/QH15) — tuy nguồn dẫn vẫn đúng. Điều này cho thấy RAG giảm mạnh nhưng chưa loại bỏ hoàn toàn sai sót của phần sinh; cần kiểm chứng của con người với các nội dung pháp lý quan trọng.")
 
     # ----------------------------- CHƯƠNG 5 -----------------------------
     H1(doc, "CHƯƠNG 5. KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN")
@@ -393,7 +413,7 @@ def main():
     body(doc, "Tính mới: đồ án kết hợp một cách có hệ thống các kỹ thuật phù hợp tiếng Việt và miền pháp luật — bi-encoder dựa trên PhoBERT, hybrid BM25+vector kèm nhận diện số hiệu văn bản, reranker PhoRanker và sinh có ràng buộc trích dẫn bằng PhoGPT — đồng thời chứng minh đóng góp của từng thành phần bằng thực nghiệm A/B. Điểm khác biệt so với các hệ RAG phổ thông là cơ chế nhận diện số hiệu văn bản nhằm khắc phục điểm yếu của tìm kiếm ngữ nghĩa đối với các định danh chính xác. Khả năng ứng dụng: hệ thống có thể dùng làm công cụ hỗ trợ tra cứu cho người dân, cán bộ y tế và sinh viên; vận hành trên máy phổ thông (CPU) nên dễ triển khai trong điều kiện hạn chế. Triển vọng: kiến trúc mang tính tổng quát, có thể mở rộng sang các lĩnh vực pháp luật khác và nâng cấp thành dịch vụ trực tuyến khi có hạ tầng mạnh hơn.")
     H2(doc, "5.3. Hạn chế")
     bullet(doc, "Bộ câu hỏi đánh giá còn nhỏ (18 câu) và ground-truth do tác giả xây dựng; nên mở rộng quy mô và có chuyên gia pháp lý thẩm định.")
-    bullet(doc, "Tốc độ sinh trên CPU (~20–40 giây/câu) chưa đáp ứng yêu cầu thời gian thực.")
+    bullet(doc, "Tốc độ sinh trên CPU (trung bình ~52 giây/câu) chưa đáp ứng yêu cầu thời gian thực.")
     bullet(doc, "Chưa đánh giá định lượng độ trung thực (faithfulness) của câu trả lời so với nguồn.")
     H2(doc, "5.4. Hướng phát triển")
     bullet(doc, "Mở rộng và chuẩn hóa bộ đánh giá; bổ sung độ đo faithfulness/groundedness tự động.")

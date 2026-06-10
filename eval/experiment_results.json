@@ -1,0 +1,211 @@
+{
+  "precision_recall": {
+    "1": {
+      "P": 0.556,
+      "R": 0.366,
+      "F1": 0.441
+    },
+    "3": {
+      "P": 0.389,
+      "R": 0.625,
+      "F1": 0.48
+    },
+    "5": {
+      "P": 0.267,
+      "R": 0.681,
+      "F1": 0.384
+    },
+    "10": {
+      "P": 0.144,
+      "R": 0.722,
+      "F1": 0.24
+    }
+  },
+  "avg_retrieval_s": 9.05,
+  "avg_gen_s": 52.1,
+  "cite_rate": 1.0,
+  "per_question": [
+    {
+      "q": "Điều kiện để cá nhân được cấp giấy phép hành nghề khám bệnh, chữa bệnh là gì?",
+      "top": "15/2023/QH15",
+      "rank": 1,
+      "retr_s": 36.07
+    },
+    {
+      "q": "Người hành nghề khám bệnh, chữa bệnh có những nghĩa vụ gì?",
+      "top": "15/2023/QH15",
+      "rank": 1,
+      "retr_s": 25.6
+    },
+    {
+      "q": "Các trường hợp bị cấm hành nghề khám bệnh, chữa bệnh?",
+      "top": "15/2023/QH15",
+      "rank": 1,
+      "retr_s": 6.31
+    },
+    {
+      "q": "Những hành vi bị nghiêm cấm trong hoạt động dược?",
+      "top": "696/QĐ-QLD",
+      "rank": 2,
+      "retr_s": 6.43
+    },
+    {
+      "q": "Điều kiện cấp giấy chứng nhận đủ điều kiện kinh doanh dược?",
+      "top": "105/2016/QH13",
+      "rank": 1,
+      "retr_s": 6.3
+    },
+    {
+      "q": "Quy định về quảng cáo thuốc được thực hiện như thế nào?",
+      "top": "105/2016/QH13",
+      "rank": 1,
+      "retr_s": 6.36
+    },
+    {
+      "q": "Cơ sở sản xuất, kinh doanh thực phẩm phải bảo đảm những điều kiện an toàn thực phẩm nào?",
+      "top": "55/2010/QH12",
+      "rank": 1,
+      "retr_s": 6.19
+    },
+    {
+      "q": "Quyền và nghĩa vụ của tổ chức, cá nhân trong bảo đảm an toàn thực phẩm?",
+      "top": "61/VBHN-VPQH",
+      "rank": 1,
+      "retr_s": 6.32
+    },
+    {
+      "q": "Điều kiện bảo đảm an toàn đối với thực phẩm tươi sống?",
+      "top": "40/2017/TT-BYT",
+      "rank": 2,
+      "retr_s": 6.18
+    },
+    {
+      "q": "Đối tượng nào tham gia bảo hiểm y tế bắt buộc?",
+      "top": "70/2015/NĐ-CP",
+      "rank": 4,
+      "retr_s": 6.23
+    },
+    {
+      "q": "Mức đóng và trách nhiệm đóng bảo hiểm y tế được quy định ra sao?",
+      "top": "4480/BYT-VPB1",
+      "rank": 2,
+      "retr_s": 6.3
+    },
+    {
+      "q": "Các biện pháp phòng, chống tác hại của thuốc lá?",
+      "top": "3328/BTNMT-TCCB",
+      "rank": 4,
+      "retr_s": 6.37
+    },
+    {
+      "q": "Những địa điểm nào cấm hút thuốc lá hoàn toàn?",
+      "top": "09/2012/QH13",
+      "rank": 1,
+      "retr_s": 6.39
+    },
+    {
+      "q": "Quy định về phòng, chống tác hại của rượu, bia?",
+      "top": "24/2020/NĐ-CP",
+      "rank": 2,
+      "retr_s": 6.58
+    },
+    {
+      "q": "Các hành vi bị nghiêm cấm liên quan đến rượu, bia?",
+      "top": "44/2019/QH14",
+      "rank": 1,
+      "retr_s": 6.48
+    },
+    {
+      "q": "Nguyên tắc trong việc hiến, lấy, ghép mô, bộ phận cơ thể người?",
+      "top": "75/2006/QH11",
+      "rank": 1,
+      "retr_s": 6.36
+    },
+    {
+      "q": "Các biện pháp xã hội trong phòng, chống HIV/AIDS?",
+      "top": "5466/QĐ-BYT",
+      "rank": 2,
+      "retr_s": 6.39
+    },
+    {
+      "q": "Luật Phòng bệnh quy định gì về hoạt động tiêm chủng?",
+      "top": "104/2016/NĐ-CP",
+      "rank": null,
+      "retr_s": 6.1
+    }
+  ],
+  "generation": [
+    {
+      "q": "Điều kiện để cá nhân được cấp giấy phép hành nghề khám bệnh, chữa bệnh là gì?",
+      "answer": "Điều kiện để cá nhân được cấp giấy phép hành nghề khám bệnh, chữa bệnh là phải có giấy chứng nhận đủ điều kiện hành nghề và đáp ứng các yêu cầu về sử dụng ngôn ngữ trong khám bệnh hoặc đã hoàn thành thực hành theo quy định.",
+      "sources": [
+        "15/2023/QH15",
+        "96/2023/NĐ-CP",
+        "16/2024/NĐ-CP"
+      ],
+      "cite_ok": true,
+      "gen_s": 31.6
+    },
+    {
+      "q": "Người hành nghề khám bệnh, chữa bệnh có những nghĩa vụ gì?",
+      "answer": "Theo Điều 19 Luật Khám bệnh, chữa bệnh 2009 quy định về nghĩa vụ của người hành nghề khám bệnh, chữa bệnh như sau:\n- Tổ chức việc chẩn đoán, điều trị và thực hiện các kỹ thuật chuyên môn khác theo chứng chỉ hành nghề.\n- Chỉ được kê đơn thuốc sau khi đã có kết quả khám bệnh, chẩn đoán bệnh. Việc kê đ",
+      "sources": [
+        "15/2023/QH15",
+        "16/2024/NĐ-CP"
+      ],
+      "cite_ok": true,
+      "gen_s": 49.3
+    },
+    {
+      "q": "Các trường hợp bị cấm hành nghề khám bệnh, chữa bệnh?",
+      "answer": "Các trường hợp bị cấm hành nghề khám bệnh, chữa bệnh bao gồm:\n- Đang bị truy cứu trách nhiệm hình sự về hành vi vi phạm pháp luật có liên quan đến chuyên môn kỹ thuật.\n- Đang trong thời gian thi hành án treo, án phạt cải tạo không giam giữ về hành vi vi phạm pháp luật có liên quan đến chuyên môn kỹ ",
+      "sources": [
+        "15/2023/QH15",
+        "758/BYT-KCB",
+        "2019/QĐ-UBND"
+      ],
+      "cite_ok": true,
+      "gen_s": 33.1
+    },
+    {
+      "q": "Những hành vi bị nghiêm cấm trong hoạt động dược?",
+      "answer": "Những hành vi bị nghiêm cấm trong hoạt động dược bao gồm:\n\n1. Kinh doanh thuốc không có giấy chứng nhận đủ điều kiện kinh doanh thuốc hoặc cung cấp dịch vụ khám bệnh, chữa bệnh mà không có giấy phép hoạt động.\n2. Hành nghề khi chưa được cấp chứng chỉ hành nghề dược hoặc trong thời gian bị tước quyền",
+      "sources": [
+        "696/QĐ-QLD",
+        "39/VBHN-VPQH",
+        "105/2016/QH13",
+        "09/CT-UBND",
+        "286/QĐ-QLD"
+      ],
+      "cite_ok": true,
+      "gen_s": 113.1
+    },
+    {
+      "q": "Điều kiện cấp giấy chứng nhận đủ điều kiện kinh doanh dược?",
+      "answer": "Điều kiện cấp giấy chứng nhận đủ điều kiện kinh doanh dược được quy định tại Điều 33 Luật Dược 2016 như sau:\n- Có địa điểm, khu vực bảo quản, trang thiết bị bảo quản phù hợp với yêu cầu bảo quản ghi trên nhãn thuốc.\n- Người chịu trách nhiệm chuyên môn về dược của cơ sở kinh doanh dược phải có Chứng ",
+      "sources": [
+        "105/2016/QH13",
+        "866/QĐ-CT",
+        "39/VBHN-VPQH",
+        "5229/QĐ-BYT",
+        "3099/QĐ-UBND"
+      ],
+      "cite_ok": true,
+      "gen_s": 44.6
+    },
+    {
+      "q": "Quy định về quảng cáo thuốc được thực hiện như thế nào?",
+      "answer": "Theo Điều 79 Luật Dược 2016, quảng cáo thuốc được thực hiện theo các quy định sau:\n- Việc quảng cáo thuốc phải tuân thủ quy định của pháp luật; không bị cấm quảng cáo trên các phương tiện thông tin đại chúng.\n- Việc quảng cáo thuốc được thực hiện để thu hút hành vi sử dụng thuốc hợp lý và hướng dẫn ",
+      "sources": [
+        "105/2016/QH13",
+        "39/VBHN-VPQH",
+        "1473/QLD-PCHN",
+        "09/2015/TT-BYT",
+        "865/BTTTT-VP"
+      ],
+      "cite_ok": true,
+      "gen_s": 40.6
+    }
+  ],
+  "n": 18
+}
