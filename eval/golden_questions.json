@@ -1,0 +1,20 @@
+[
+  {"q": "Điều kiện để cá nhân được cấp giấy phép hành nghề khám bệnh, chữa bệnh là gì?", "relevant": ["15/2023/QH15"]},
+  {"q": "Người hành nghề khám bệnh, chữa bệnh có những nghĩa vụ gì?", "relevant": ["15/2023/QH15"]},
+  {"q": "Các trường hợp bị cấm hành nghề khám bệnh, chữa bệnh?", "relevant": ["15/2023/QH15"]},
+  {"q": "Những hành vi bị nghiêm cấm trong hoạt động dược?", "relevant": ["105/2016/QH13", "44/2024/QH15", "39/VBHN-VPQH"]},
+  {"q": "Điều kiện cấp giấy chứng nhận đủ điều kiện kinh doanh dược?", "relevant": ["105/2016/QH13", "44/2024/QH15", "39/VBHN-VPQH"]},
+  {"q": "Quy định về quảng cáo thuốc được thực hiện như thế nào?", "relevant": ["105/2016/QH13", "44/2024/QH15", "39/VBHN-VPQH"]},
+  {"q": "Cơ sở sản xuất, kinh doanh thực phẩm phải bảo đảm những điều kiện an toàn thực phẩm nào?", "relevant": ["55/2010/QH12", "61/VBHN-VPQH", "02/VBHN-VPQH"]},
+  {"q": "Quyền và nghĩa vụ của tổ chức, cá nhân trong bảo đảm an toàn thực phẩm?", "relevant": ["55/2010/QH12", "61/VBHN-VPQH", "02/VBHN-VPQH"]},
+  {"q": "Điều kiện bảo đảm an toàn đối với thực phẩm tươi sống?", "relevant": ["55/2010/QH12", "61/VBHN-VPQH", "02/VBHN-VPQH"]},
+  {"q": "Đối tượng nào tham gia bảo hiểm y tế bắt buộc?", "relevant": ["46/2014/QH13", "51/2024/QH15"]},
+  {"q": "Mức đóng và trách nhiệm đóng bảo hiểm y tế được quy định ra sao?", "relevant": ["46/2014/QH13", "51/2024/QH15"]},
+  {"q": "Các biện pháp phòng, chống tác hại của thuốc lá?", "relevant": ["09/2012/QH13", "08/VBHN-VPQH", "11/VBHN-VPQH", "15/VBHN-VPQH"]},
+  {"q": "Những địa điểm nào cấm hút thuốc lá hoàn toàn?", "relevant": ["09/2012/QH13", "08/VBHN-VPQH", "11/VBHN-VPQH", "15/VBHN-VPQH"]},
+  {"q": "Quy định về phòng, chống tác hại của rượu, bia?", "relevant": ["44/2019/QH14"]},
+  {"q": "Các hành vi bị nghiêm cấm liên quan đến rượu, bia?", "relevant": ["44/2019/QH14"]},
+  {"q": "Nguyên tắc trong việc hiến, lấy, ghép mô, bộ phận cơ thể người?", "relevant": ["75/2006/QH11"]},
+  {"q": "Các biện pháp xã hội trong phòng, chống HIV/AIDS?", "relevant": ["64/2006/QH11", "33/VBHN-VPQH"]},
+  {"q": "Luật Phòng bệnh quy định gì về hoạt động tiêm chủng?", "relevant": ["114/2025/QH15"]}
+]

@@ -1,0 +1,40 @@
+# ===== Dữ liệu lớn & sinh ra khi chạy (KHÔNG đẩy lên GitHub) =====
+# Dữ liệu nguồn / clone (rất lớn, tải lại từ Hugging Face)
+vietnamese-legal-documents/
+*.csv
+medical_chunks_temp.csv
+
+# Dữ liệu đã xử lý / chỉ mục (sinh lại bằng script)
+*.parquet
+chroma_db/
+chroma_ab/
+bm25_index/
+bm25_meta.pkl
+
+# Mô hình lượng tử hóa (tải bằng download_gguf.py)
+models/
+*.gguf
+
+# ===== Đầu ra tạm / log =====
+*.log
+*.pid
+hr_out.txt
+ab_chunk_out.txt
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+
+# ===== Hệ điều hành / IDE =====
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.ipynb_checkpoints/
+
+# ===== Cache HuggingFace cục bộ (nếu nằm trong repo) =====
+.cache/

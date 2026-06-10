@@ -1,0 +1,32 @@
+# ====== Hệ thống RAG pháp luật/y tế — thư viện cần thiết ======
+# Python 3.12. Cài: pip install -r requirements.txt
+# Riêng llama-cpp-python trên Windows nên cài bản prebuilt CPU:
+#   pip install llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
+
+# Xử lý dữ liệu
+pandas
+pyarrow
+tqdm
+huggingface_hub
+
+# Embedding & vector DB
+sentence-transformers
+torch
+transformers
+chromadb
+pyvi                # tách từ tiếng Việt (PhoBERT)
+
+# Tìm kiếm từ vựng / hybrid
+bm25s
+
+# Sinh câu trả lời (LLM)
+llama-cpp-python    # xem ghi chú prebuilt ở trên
+
+# Backend & web
+fastapi
+uvicorn[standard]
+
+# Trình bày kết quả / báo cáo (tùy chọn, dùng cho figures & demo)
+matplotlib
+python-docx
+playwright          # chụp ảnh giao diện (chạy: playwright install chromium)

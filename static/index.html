@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trợ lý Pháp luật Y tế — RAG</title>
+<script src="/static/vendor/react.production.min.js"></script>
+<script src="/static/vendor/react-dom.production.min.js"></script>
+<script src="/static/vendor/babel.min.js"></script>
+<style>
+  :root{ --bg:#eef1f6; --panel:#ffffff; --ink:#1c2430; --muted:#6b7686;
+         --brand:#1761d2; --brand2:#0d9488; --line:#e3e7ee; --user:#1761d2; }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,'Segoe UI',Roboto,Arial;background:var(--bg);color:var(--ink)}
+  .app{max-width:900px;margin:0 auto;height:100vh;display:flex;flex-direction:column}
+  header{padding:14px 18px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff}
+  header h1{margin:0;font-size:18px;display:flex;align-items:center;gap:8px}
+  header .meta{font-size:12px;opacity:.92;margin-top:4px}
+  .chat{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:14px}
+  .msg{display:flex;gap:10px;max-width:88%}
+  .msg.user{align-self:flex-end;flex-direction:row-reverse}
+  .avatar{width:32px;height:32px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:16px;background:#dde7fb}
+  .msg.user .avatar{background:var(--user);color:#fff}
+  .bubble{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:11px 14px;line-height:1.55;white-space:pre-wrap;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+  .msg.user .bubble{background:var(--user);color:#fff;border-color:var(--user)}
+  .srcwrap{margin-top:10px}
+  .srctoggle{font-size:12.5px;color:var(--brand);cursor:pointer;user-select:none;font-weight:600}
+  .src{font-size:13px;border-left:3px solid var(--brand);background:#f4f8ff;border-radius:6px;padding:7px 10px;margin-top:7px}
+  .src .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:3px}
+  .tag{font-size:11px;background:#dde7fb;color:#1b3a73;border-radius:5px;padding:1px 7px;font-weight:600}
+  .tag.ok{background:#d6f3ea;color:#0a6b53}
+  .tag.no{background:#fde2e2;color:#9b1c1c}
+  .src .title{color:var(--muted)}
+  .src .excerpt{color:#333;font-style:italic;margin-top:3px}
+  .composer{border-top:1px solid var(--line);background:var(--panel);padding:10px 14px}
+  .opts{display:flex;gap:14px;align-items:center;font-size:12.5px;color:var(--muted);margin-bottom:8px;flex-wrap:wrap}
+  .opts input[type=number]{width:46px}
+  .inrow{display:flex;gap:8px;align-items:flex-end}
+  textarea{flex:1;resize:none;height:46px;max-height:140px;padding:11px;border:1px solid #cfd6e0;border-radius:10px;font:inherit}
+  button.send{background:var(--brand);color:#fff;border:0;border-radius:10px;padding:0 20px;height:46px;cursor:pointer;font-size:15px;font-weight:600}
+  button.send:disabled{opacity:.5;cursor:default}
+  .clear{background:none;border:1px solid #cfd6e0;border-radius:8px;padding:3px 10px;cursor:pointer;color:var(--muted);font-size:12px}
+  .empty{margin:auto;text-align:center;color:var(--muted);max-width:460px}
+  .chip{display:inline-block;margin:4px;padding:7px 12px;background:var(--panel);border:1px solid var(--line);border-radius:20px;cursor:pointer;font-size:13px}
+  .typing{display:inline-flex;gap:4px}.typing i{width:7px;height:7px;background:var(--muted);border-radius:50%;animation:b 1.2s infinite}
+  .typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+  @keyframes b{0%,60%,100%{opacity:.3}30%{opacity:1}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState,useEffect,useRef} = React;
+const SAMPLES = [
+  "Điều kiện để được cấp giấy phép hành nghề khám bệnh, chữa bệnh?",
+  "Những địa điểm nào cấm hút thuốc lá hoàn toàn?",
+  "Đối tượng nào tham gia bảo hiểm y tế bắt buộc?",
+  "Cơ sở kinh doanh thực phẩm phải bảo đảm điều kiện gì?",
+];
+
+function SourceCard({s,i}){
+  const eff = s.effect_status==="In effect";
+  return (
+    <div className="src">
+      <div className="row">
+        <span className="tag">[{i+1}]</span>
+        <b>{s.document_number||"?"}</b>
+        {s.legal_type && <span className="tag">{s.legal_type}</span>}
+        <span className={"tag "+(eff?"ok":"no")}>{eff?"Còn hiệu lực":(s.effect_status||"?")}</span>
+        <span className="tag">score {s.score}</span>
+      </div>
+      <div className="title">{s.title}</div>
+      <div className="excerpt">“{s.excerpt}…”</div>
+    </div>
+  );
+}
+
+function Sources({sources}){
+  const [open,setOpen]=useState(false);
+  if(!sources||!sources.length) return null;
+  return (
+    <div className="srcwrap">
+      <span className="srctoggle" onClick={()=>setOpen(!open)}>
+        {open?"▾":"▸"} {sources.length} nguồn tham khảo
+      </span>
+      {open && sources.map((s,i)=><SourceCard key={i} s={s} i={i}/>)}
+    </div>
+  );
+}
+
+function Message({m}){
+  return (
+    <div className={"msg "+m.role}>
+      <div className="avatar">{m.role==="user"?"🧑":"⚖️"}</div>
+      <div>
+        <div className="bubble">
+          {m.loading ? <span className="typing"><i></i><i></i><i></i></span> : m.text}
+        </div>
+        {m.role==="assistant" && <Sources sources={m.sources}/>}
+      </div>
+    </div>
+  );
+}
+
+function App(){
+  const [messages,setMessages]=useState(()=>{
+    try{return JSON.parse(localStorage.getItem("chat")||"[]")}catch(e){return []}
+  });
+  const [input,setInput]=useState("");
+  const [busy,setBusy]=useState(false);
+  const [k,setK]=useState(5);
+  const [eff,setEff]=useState(true);
+  const [health,setHealth]=useState(null);
+  const chatRef=useRef();
+
+  useEffect(()=>{fetch("/health").then(r=>r.json()).then(setHealth).catch(()=>{})},[]);
+  useEffect(()=>{localStorage.setItem("chat",JSON.stringify(messages));
+    if(chatRef.current) chatRef.current.scrollTop=chatRef.current.scrollHeight;},[messages]);
+
+  async function send(q){
+    q=(q||input).trim(); if(!q||busy) return;
+    setInput(""); setBusy(true);
+    setMessages(m=>[...m,{role:"user",text:q},{role:"assistant",loading:true}]);
+    try{
+      const r=await fetch("/chat",{method:"POST",headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({question:q,k:k,only_effective:eff})});
+      const d=await r.json();
+      setMessages(m=>{const c=[...m];c[c.length-1]={role:"assistant",text:d.answer,sources:d.sources};return c;});
+    }catch(e){
+      setMessages(m=>{const c=[...m];c[c.length-1]={role:"assistant",text:"Lỗi: "+e};return c;});
+    }
+    setBusy(false);
+  }
+  function onKey(e){ if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();send();} }
+
+  return (
+    <div className="app">
+      <header>
+        <h1>⚖️🩺 Trợ lý tra cứu Văn bản Pháp luật ngành Y tế</h1>
+        <div className="meta">
+          {health ? `${health.vectors.toLocaleString()} đoạn văn bản · LLM: ${health.llm_mode}${health.rerank?" · reranker BẬT":""}` : "Đang kết nối…"}
+        </div>
+      </header>
+      <div className="chat" ref={chatRef}>
+        {messages.length===0 ? (
+          <div className="empty">
+            <p>Hỏi về văn bản pháp luật ngành y tế Việt Nam. Ví dụ:</p>
+            {SAMPLES.map((s,i)=><div key={i} className="chip" onClick={()=>send(s)}>{s}</div>)}
+          </div>
+        ) : messages.map((m,i)=><Message key={i} m={m}/>)}
+      </div>
+      <div className="composer">
+        <div className="opts">
+          <label><input type="checkbox" checked={eff} onChange={e=>setEff(e.target.checked)}/> Chỉ VB còn hiệu lực</label>
+          <label>Số nguồn (k): <input type="number" min="1" max="10" value={k} onChange={e=>setK(+e.target.value)}/></label>
+          {messages.length>0 && <button className="clear" onClick={()=>setMessages([])}>🗑 Xóa hội thoại</button>}
+        </div>
+        <div className="inrow">
+          <textarea value={input} placeholder="Nhập câu hỏi… (Enter để gửi, Shift+Enter xuống dòng)"
+            onChange={e=>setInput(e.target.value)} onKeyDown={onKey}/>
+          <button className="send" disabled={busy||!input.trim()} onClick={()=>send()}>
+            {busy?"…":"Gửi"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>
