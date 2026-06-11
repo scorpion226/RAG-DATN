@@ -1,137 +1,329 @@
 {
   "precision_recall": {
     "1": {
-      "P": 0.556,
-      "R": 0.366,
-      "F1": 0.441
+      "P": 0.56,
+      "R": 0.363,
+      "F1": 0.44
     },
     "3": {
-      "P": 0.389,
-      "R": 0.625,
-      "F1": 0.48
+      "P": 0.36,
+      "R": 0.632,
+      "F1": 0.459
     },
     "5": {
-      "P": 0.267,
-      "R": 0.681,
-      "F1": 0.384
+      "P": 0.244,
+      "R": 0.688,
+      "F1": 0.36
     },
     "10": {
-      "P": 0.144,
-      "R": 0.722,
-      "F1": 0.24
+      "P": 0.14,
+      "R": 0.778,
+      "F1": 0.237
     }
   },
-  "avg_retrieval_s": 9.05,
-  "avg_gen_s": 52.1,
+  "avg_retrieval_s": 7.37,
+  "avg_gen_s": 45.0,
   "cite_rate": 1.0,
   "per_question": [
     {
       "q": "Điều kiện để cá nhân được cấp giấy phép hành nghề khám bệnh, chữa bệnh là gì?",
       "top": "15/2023/QH15",
       "rank": 1,
-      "retr_s": 36.07
+      "retr_s": 34.99
     },
     {
       "q": "Người hành nghề khám bệnh, chữa bệnh có những nghĩa vụ gì?",
       "top": "15/2023/QH15",
       "rank": 1,
-      "retr_s": 25.6
+      "retr_s": 6.81
     },
     {
       "q": "Các trường hợp bị cấm hành nghề khám bệnh, chữa bệnh?",
       "top": "15/2023/QH15",
       "rank": 1,
-      "retr_s": 6.31
+      "retr_s": 6.38
+    },
+    {
+      "q": "Người bệnh có những quyền gì khi khám bệnh, chữa bệnh?",
+      "top": "15/2023/QH15",
+      "rank": 1,
+      "retr_s": 6.49
+    },
+    {
+      "q": "Những hành vi bị nghiêm cấm trong hoạt động khám bệnh, chữa bệnh?",
+      "top": "758/BYT-KCB",
+      "rank": 2,
+      "retr_s": 6.62
+    },
+    {
+      "q": "Giấy phép hành nghề khám bệnh, chữa bệnh có thời hạn như thế nào?",
+      "top": "15/2023/QH15",
+      "rank": 1,
+      "retr_s": 6.53
+    },
+    {
+      "q": "Trách nhiệm của Nhà nước trong hoạt động khám bệnh, chữa bệnh?",
+      "top": "15/2023/QH15",
+      "rank": 1,
+      "retr_s": 6.49
+    },
+    {
+      "q": "Quy định về các hình thức tổ chức của cơ sở khám bệnh, chữa bệnh?",
+      "top": "96/2023/NĐ-CP",
+      "rank": 1,
+      "retr_s": 7.04
     },
     {
       "q": "Những hành vi bị nghiêm cấm trong hoạt động dược?",
       "top": "696/QĐ-QLD",
       "rank": 2,
-      "retr_s": 6.43
+      "retr_s": 6.97
     },
     {
       "q": "Điều kiện cấp giấy chứng nhận đủ điều kiện kinh doanh dược?",
       "top": "105/2016/QH13",
       "rank": 1,
-      "retr_s": 6.3
+      "retr_s": 6.66
     },
     {
       "q": "Quy định về quảng cáo thuốc được thực hiện như thế nào?",
       "top": "105/2016/QH13",
       "rank": 1,
-      "retr_s": 6.36
+      "retr_s": 6.54
+    },
+    {
+      "q": "Điều kiện cấp chứng chỉ hành nghề dược?",
+      "top": "39/VBHN-VPQH",
+      "rank": 1,
+      "retr_s": 6.62
+    },
+    {
+      "q": "Các hình thức, loại hình kinh doanh dược?",
+      "top": "105/2016/QH13",
+      "rank": 1,
+      "retr_s": 6.58
+    },
+    {
+      "q": "Quy định về quản lý giá thuốc?",
+      "top": "39/VBHN-VPQH",
+      "rank": 1,
+      "retr_s": 7.62
+    },
+    {
+      "q": "Quyền và trách nhiệm của cơ sở bán lẻ thuốc?",
+      "top": "39/VBHN-VPQH",
+      "rank": 1,
+      "retr_s": 7.02
     },
     {
       "q": "Cơ sở sản xuất, kinh doanh thực phẩm phải bảo đảm những điều kiện an toàn thực phẩm nào?",
       "top": "55/2010/QH12",
       "rank": 1,
-      "retr_s": 6.19
+      "retr_s": 7.08
     },
     {
       "q": "Quyền và nghĩa vụ của tổ chức, cá nhân trong bảo đảm an toàn thực phẩm?",
       "top": "61/VBHN-VPQH",
       "rank": 1,
-      "retr_s": 6.32
+      "retr_s": 6.93
     },
     {
       "q": "Điều kiện bảo đảm an toàn đối với thực phẩm tươi sống?",
       "top": "40/2017/TT-BYT",
       "rank": 2,
-      "retr_s": 6.18
+      "retr_s": 6.93
+    },
+    {
+      "q": "Quy định về ghi nhãn đối với thực phẩm?",
+      "top": "61/VBHN-VPQH",
+      "rank": 1,
+      "retr_s": 6.94
+    },
+    {
+      "q": "Những hành vi bị cấm trong lĩnh vực an toàn thực phẩm?",
+      "top": "55/2010/QH12",
+      "rank": 1,
+      "retr_s": 6.98
+    },
+    {
+      "q": "Điều kiện bảo đảm an toàn thực phẩm đối với thực phẩm nhập khẩu?",
+      "top": "61/VBHN-VPQH",
+      "rank": 1,
+      "retr_s": 8.32
     },
     {
       "q": "Đối tượng nào tham gia bảo hiểm y tế bắt buộc?",
       "top": "70/2015/NĐ-CP",
       "rank": 4,
-      "retr_s": 6.23
+      "retr_s": 7.28
     },
     {
       "q": "Mức đóng và trách nhiệm đóng bảo hiểm y tế được quy định ra sao?",
       "top": "4480/BYT-VPB1",
       "rank": 2,
-      "retr_s": 6.3
+      "retr_s": 7.02
+    },
+    {
+      "q": "Phạm vi được hưởng của người tham gia bảo hiểm y tế?",
+      "top": "35/2016/TT-BYT",
+      "rank": 2,
+      "retr_s": 6.91
+    },
+    {
+      "q": "Các trường hợp không được hưởng bảo hiểm y tế?",
+      "top": "188/2025/NĐ-CP",
+      "rank": null,
+      "retr_s": 6.86
+    },
+    {
+      "q": "Quy định về thẻ bảo hiểm y tế?",
+      "top": "824/QĐ-TTg",
+      "rank": null,
+      "retr_s": 6.93
     },
     {
       "q": "Các biện pháp phòng, chống tác hại của thuốc lá?",
       "top": "3328/BTNMT-TCCB",
       "rank": 4,
-      "retr_s": 6.37
+      "retr_s": 6.85
     },
     {
       "q": "Những địa điểm nào cấm hút thuốc lá hoàn toàn?",
       "top": "09/2012/QH13",
       "rank": 1,
-      "retr_s": 6.39
+      "retr_s": 6.83
+    },
+    {
+      "q": "Các hành vi bị nghiêm cấm liên quan đến thuốc lá?",
+      "top": "09/2012/QH13",
+      "rank": 1,
+      "retr_s": 7.03
+    },
+    {
+      "q": "Quy định về in cảnh báo sức khỏe trên bao bì thuốc lá?",
+      "top": "05/2013/TTLT-BYT-BCT",
+      "rank": 4,
+      "retr_s": 6.94
     },
     {
       "q": "Quy định về phòng, chống tác hại của rượu, bia?",
       "top": "24/2020/NĐ-CP",
       "rank": 2,
-      "retr_s": 6.58
+      "retr_s": 6.83
     },
     {
       "q": "Các hành vi bị nghiêm cấm liên quan đến rượu, bia?",
       "top": "44/2019/QH14",
       "rank": 1,
-      "retr_s": 6.48
+      "retr_s": 6.73
+    },
+    {
+      "q": "Các biện pháp quản lý việc quảng cáo rượu, bia?",
+      "top": "2535/BYT-DP",
+      "rank": 4,
+      "retr_s": 6.77
+    },
+    {
+      "q": "Những trường hợp, địa điểm không được uống rượu, bia?",
+      "top": "24/2020/NĐ-CP",
+      "rank": 2,
+      "retr_s": 6.76
+    },
+    {
+      "q": "Trách nhiệm của cơ sở kinh doanh rượu, bia trong phòng chống tác hại?",
+      "top": "44/2019/QH14",
+      "rank": 1,
+      "retr_s": 6.8
     },
     {
       "q": "Nguyên tắc trong việc hiến, lấy, ghép mô, bộ phận cơ thể người?",
       "top": "75/2006/QH11",
       "rank": 1,
-      "retr_s": 6.36
+      "retr_s": 6.69
+    },
+    {
+      "q": "Điều kiện để cá nhân được hiến mô, bộ phận cơ thể người?",
+      "top": "75/2006/QH11",
+      "rank": 1,
+      "retr_s": 6.92
+    },
+    {
+      "q": "Các hành vi bị nghiêm cấm trong hiến, lấy, ghép mô, bộ phận cơ thể người?",
+      "top": "75/2006/QH11",
+      "rank": 1,
+      "retr_s": 6.63
     },
     {
       "q": "Các biện pháp xã hội trong phòng, chống HIV/AIDS?",
       "top": "5466/QĐ-BYT",
       "rank": 2,
-      "retr_s": 6.39
+      "retr_s": 6.53
+    },
+    {
+      "q": "Quyền và nghĩa vụ của người nhiễm HIV?",
+      "top": "33/VBHN-VPQH",
+      "rank": 1,
+      "retr_s": 6.62
+    },
+    {
+      "q": "Những hành vi bị nghiêm cấm trong phòng, chống HIV/AIDS?",
+      "top": "64/2006/QH11",
+      "rank": 1,
+      "retr_s": 6.53
+    },
+    {
+      "q": "Các biện pháp can thiệp giảm tác hại trong dự phòng lây nhiễm HIV?",
+      "top": "29/2013/TTLT-BYT-BVHTTDL-BCA-BLĐTBXH",
+      "rank": 7,
+      "retr_s": 6.54
     },
     {
       "q": "Luật Phòng bệnh quy định gì về hoạt động tiêm chủng?",
       "top": "104/2016/NĐ-CP",
       "rank": null,
-      "retr_s": 6.1
+      "retr_s": 6.66
+    },
+    {
+      "q": "Các nguyên tắc trong phòng bệnh theo quy định pháp luật?",
+      "top": "3635/QĐ-BYT",
+      "rank": 3,
+      "retr_s": 6.89
+    },
+    {
+      "q": "Quy định về phòng, chống các yếu tố nguy cơ đối với sức khỏe?",
+      "top": "2340/QĐ-UBND",
+      "rank": 10,
+      "retr_s": 6.56
+    },
+    {
+      "q": "Điều kiện đối với người chịu trách nhiệm chuyên môn về dược của cơ sở bán lẻ thuốc?",
+      "top": "105/2016/QH13",
+      "rank": 1,
+      "retr_s": 6.79
+    },
+    {
+      "q": "Quy định về kê đơn và sử dụng thuốc trong cơ sở khám bệnh, chữa bệnh?",
+      "top": "30/1999/TTLT/BLĐTBXH-BYT",
+      "rank": null,
+      "retr_s": 6.7
+    },
+    {
+      "q": "Quy định bảo đảm an toàn thực phẩm đối với kinh doanh dịch vụ ăn uống?",
+      "top": "2381/2006/QĐ-UBND",
+      "rank": 2,
+      "retr_s": 6.48
+    },
+    {
+      "q": "Trách nhiệm quản lý nhà nước về bảo hiểm y tế?",
+      "top": "537/QĐ-UBND",
+      "rank": 10,
+      "retr_s": 6.39
+    },
+    {
+      "q": "Quyền và nghĩa vụ của người không hút thuốc lá?",
+      "top": "2421/BYT-KCB",
+      "rank": 2,
+      "retr_s": 6.46
     }
   ],
   "generation": [
@@ -144,7 +336,7 @@
         "16/2024/NĐ-CP"
       ],
       "cite_ok": true,
-      "gen_s": 31.6
+      "gen_s": 35.6
     },
     {
       "q": "Người hành nghề khám bệnh, chữa bệnh có những nghĩa vụ gì?",
@@ -154,7 +346,7 @@
         "16/2024/NĐ-CP"
       ],
       "cite_ok": true,
-      "gen_s": 49.3
+      "gen_s": 47.9
     },
     {
       "q": "Các trường hợp bị cấm hành nghề khám bệnh, chữa bệnh?",
@@ -165,47 +357,40 @@
         "2019/QĐ-UBND"
       ],
       "cite_ok": true,
-      "gen_s": 33.1
+      "gen_s": 31.8
     },
     {
-      "q": "Những hành vi bị nghiêm cấm trong hoạt động dược?",
-      "answer": "Những hành vi bị nghiêm cấm trong hoạt động dược bao gồm:\n\n1. Kinh doanh thuốc không có giấy chứng nhận đủ điều kiện kinh doanh thuốc hoặc cung cấp dịch vụ khám bệnh, chữa bệnh mà không có giấy phép hoạt động.\n2. Hành nghề khi chưa được cấp chứng chỉ hành nghề dược hoặc trong thời gian bị tước quyền",
+      "q": "Người bệnh có những quyền gì khi khám bệnh, chữa bệnh?",
+      "answer": "Theo Điều 9 Luật Khám bệnh, chữa bệnh năm 2009 quy định về quyền của người bệnh như sau:\n- Được khám bệnh, chữa bệnh có chất lượng phù hợp với điều kiện thực tế.\n- Được tư vấn và giải thích về tình trạng sức khỏe, phương pháp điều trị và dịch vụ khám bệnh, chữa bệnh.\n- Được giữ bí mật thông tin cá n",
       "sources": [
-        "696/QĐ-QLD",
-        "39/VBHN-VPQH",
-        "105/2016/QH13",
-        "09/CT-UBND",
-        "286/QĐ-QLD"
+        "15/2023/QH15"
       ],
       "cite_ok": true,
-      "gen_s": 113.1
+      "gen_s": 31.5
     },
     {
-      "q": "Điều kiện cấp giấy chứng nhận đủ điều kiện kinh doanh dược?",
-      "answer": "Điều kiện cấp giấy chứng nhận đủ điều kiện kinh doanh dược được quy định tại Điều 33 Luật Dược 2016 như sau:\n- Có địa điểm, khu vực bảo quản, trang thiết bị bảo quản phù hợp với yêu cầu bảo quản ghi trên nhãn thuốc.\n- Người chịu trách nhiệm chuyên môn về dược của cơ sở kinh doanh dược phải có Chứng ",
+      "q": "Những hành vi bị nghiêm cấm trong hoạt động khám bệnh, chữa bệnh?",
+      "answer": "1. Xâm phạm quyền của người bệnh.\n2. Từ chối hoặc cố ý chậm cấp cứu người bệnh, trừ trường hợp quy định tại Điều 30 Luật Khám bệnh, chữa bệnh 2023:\n\n3. Khám bệnh, chữa bệnh mà không đáp ứng điều kiện theo quy định tại Điều 19 Luật Khám bệnh, chữa bệnh 2023:\n\n4. Khám bệnh, chữa bệnh khi chưa được cấp",
       "sources": [
-        "105/2016/QH13",
-        "866/QĐ-CT",
-        "39/VBHN-VPQH",
-        "5229/QĐ-BYT",
-        "3099/QĐ-UBND"
+        "758/BYT-KCB",
+        "15/2023/QH15",
+        "64/2006/QH11"
       ],
       "cite_ok": true,
-      "gen_s": 44.6
+      "gen_s": 96.5
     },
     {
-      "q": "Quy định về quảng cáo thuốc được thực hiện như thế nào?",
-      "answer": "Theo Điều 79 Luật Dược 2016, quảng cáo thuốc được thực hiện theo các quy định sau:\n- Việc quảng cáo thuốc phải tuân thủ quy định của pháp luật; không bị cấm quảng cáo trên các phương tiện thông tin đại chúng.\n- Việc quảng cáo thuốc được thực hiện để thu hút hành vi sử dụng thuốc hợp lý và hướng dẫn ",
+      "q": "Giấy phép hành nghề khám bệnh, chữa bệnh có thời hạn như thế nào?",
+      "answer": "Giấy phép hành nghề khám bệnh, chữa bệnh có thời hạn là 05 năm.",
       "sources": [
-        "105/2016/QH13",
-        "39/VBHN-VPQH",
-        "1473/QLD-PCHN",
-        "09/2015/TT-BYT",
-        "865/BTTTT-VP"
+        "15/2023/QH15",
+        "96/2023/NĐ-CP",
+        "16/2024/NĐ-CP",
+        "662/QĐ-UBND"
       ],
       "cite_ok": true,
-      "gen_s": 40.6
+      "gen_s": 26.8
     }
   ],
-  "n": 18
+  "n": 50
 }

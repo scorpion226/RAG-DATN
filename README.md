@@ -52,14 +52,15 @@ Câu hỏi → tách từ (pyvi) + embedding PhoBERT
 
 ## 📊 Kết quả đánh giá
 
-Trên bộ 18 câu hỏi vàng (neo vào các luật y tế, có bổ sung văn bản hợp nhất tương đương):
+Trên bộ **50 câu hỏi vàng** (neo vào các luật y tế, có bổ sung văn bản hợp nhất tương đương):
 
 | Cấu hình | Hit@1 | Hit@5 | Hit@10 | MRR |
 |----------|:-----:|:-----:|:------:|:---:|
-| Vector + tách từ | 0.389 | 0.833 | 0.944 | 0.586 |
-| Vector + Reranker | 0.500 | 0.889 | 0.889 | 0.644 |
-| Hybrid (BM25+vector) | 0.556 | 0.889 | **1.000** | 0.687 |
-| **Hybrid + Reranker** | **0.556** | **0.944** | 0.944 | **0.722** |
+| Không tách từ | 0.380 | 0.720 | 0.840 | 0.534 |
+| Vector + tách từ | 0.520 | 0.860 | 0.920 | 0.668 |
+| Vector + Reranker | 0.540 | 0.840 | 0.880 | 0.667 |
+| Hybrid (BM25+vector) | 0.500 | 0.860 | **0.980** | 0.669 |
+| **Hybrid + Reranker** | **0.560** | 0.860 | 0.920 | **0.694** |
 
 <div align="center">
 <img src="report/figs/retrieval_comparison.png" alt="So sánh cấu hình" width="560">

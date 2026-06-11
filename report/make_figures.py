@@ -14,10 +14,10 @@ plt.rcParams["font.family"] = "DejaVu Sans"  # hỗ trợ tiếng Việt
 # ---------- Hình 1: So sánh các cấu hình retrieval ----------
 configs = ["Không\ntách từ", "Vector\n+pyvi", "Vector\n+Rerank", "Hybrid", "Hybrid\n+Rerank"]
 metrics = {
-    "Hit@1":  [0.333, 0.389, 0.500, 0.556, 0.556],
-    "Hit@5":  [0.667, 0.833, 0.889, 0.889, 0.944],
-    "Hit@10": [0.833, 0.944, 0.889, 1.000, 0.944],
-    "MRR":    [0.481, 0.586, 0.644, 0.687, 0.722],
+    "Hit@1":  [0.380, 0.520, 0.540, 0.500, 0.560],
+    "Hit@5":  [0.720, 0.860, 0.840, 0.860, 0.860],
+    "Hit@10": [0.840, 0.920, 0.880, 0.980, 0.920],
+    "MRR":    [0.534, 0.668, 0.667, 0.669, 0.694],
 }
 x = np.arange(len(configs)); w = 0.2
 fig, ax = plt.subplots(figsize=(9, 4.8))
