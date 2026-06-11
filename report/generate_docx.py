@@ -391,14 +391,21 @@ def main():
     H2(doc, "4.8. Precision, Recall và ảnh hưởng của số nguồn k")
     body(doc, "Bên cạnh Hit@k và MRR, đề tài đo Precision@k và Recall@k ở mức văn bản (sau khi gộp các đoạn về số hiệu văn bản) cho cấu hình Hybrid + Reranker, đồng thời khảo sát ảnh hưởng của số nguồn k truyền cho mô hình (Bảng 4.3, Hình 4.2).")
     table(doc, ["k", "Precision@k", "Recall@k", "F1@k", "Trần P@k"],
-          [["1", "0,560", "0,363", "0,440", "1,000"],
+          [["1", "0,560", "0,363", "0,441", "1,000"],
+           ["2", "0,460", "0,552", "0,502", "0,980"],
            ["3", "0,360", "0,632", "0,459", "0,653"],
+           ["4", "0,295", "0,678", "0,411", "0,490"],
            ["5", "0,244", "0,688", "0,360", "0,392"],
+           ["6", "0,213", "0,713", "0,328", "0,327"],
+           ["7", "0,189", "0,728", "0,300", "0,280"],
+           ["8", "0,170", "0,748", "0,277", "0,245"],
+           ["9", "0,151", "0,748", "0,251", "0,218"],
            ["10", "0,140", "0,778", "0,237", "0,196"]],
-          caption="Bảng 4.3. Precision/Recall/F1 theo số nguồn k (kèm trần Precision)")
-    figure(doc, os.path.join(FIGS, "precision_recall_k.png"), "Hình 4.2. Precision/Recall/F1 theo số nguồn k", 13)
-    body(doc, "Kết quả thể hiện rõ đánh đổi kinh điển: khi k tăng, Recall tăng (0,363 → 0,778) nhưng Precision giảm (0,560 → 0,140). F1 đạt cực đại tại k = 3 (0,459), cho thấy lấy khoảng 3–5 nguồn là cân bằng tốt giữa độ phủ và độ chính xác — phù hợp để truyền vào mô hình sinh mà không làm loãng ngữ cảnh; hệ thống đặt mặc định k = 5.")
-    body(doc, "Cần lưu ý một điểm phương pháp quan trọng: do mỗi câu hỏi chỉ có trung bình 1,96 văn bản liên quan, Precision bị chặn trần về mặt toán học bởi trần P@k = min(|liên quan|, k)/k (cột cuối Bảng 4.3). Vì vậy việc Precision giảm khi k tăng phần lớn là do trần giảm, không phải do truy xuất kém đi. Bằng chứng: tỷ lệ Precision đạt được so với trần lại TĂNG theo k (từ 56% ở k=1 lên 71% ở k=10), nghĩa là ở k lớn hệ thống lấp gần kín các vị trí đúng có thể có. Đây là lý do nên báo cáo kèm trần Precision (hoặc dùng thêm MAP/nDCG) để tránh hiểu nhầm “Precision thấp = hệ thống kém”.")
+          caption="Bảng 4.3. Precision/Recall/F1 theo số nguồn k = 1..10 (kèm trần Precision)")
+    figure(doc, os.path.join(FIGS, "pr_sweep.png"), "Hình 4.2. Precision/Recall/F1 và trần Precision theo số nguồn k", 14)
+    body(doc, "Quét chi tiết k = 1..10 (Hình 4.2) thể hiện rõ đánh đổi kinh điển: khi k tăng, Recall tăng đều (0,363 → 0,778) trong khi Precision giảm (0,560 → 0,140). F1 — trung bình điều hòa của hai đại lượng — đạt cực đại tại k = 2 (0,502); việc quét thô trước đây (chỉ k = 1, 3, 5, 10) đã bỏ sót điểm cực đại này, cho thấy giá trị của khảo sát dải k mịn.")
+    body(doc, "So sánh ba thông số: Precision phản ánh độ “sạch” (ít nhiễu) còn Recall phản ánh độ “phủ” (ít bỏ sót); F1 cân bằng hai mặt. Vùng k = 2–3 cho F1 cao nhất nên tối ưu nếu ưu tiên độ chính xác của tập nguồn. Tuy nhiên, với bài toán sinh câu trả lời, việc cung cấp thêm ngữ cảnh (Recall cao hơn) thường có lợi cho LLM; vì vậy hệ thống chọn k = 5 làm mặc định — nơi Recall đã đạt ~0,69 mà ngữ cảnh chưa quá loãng. Đây là sự phân biệt giữa “k tối ưu cho truy xuất” (k≈2) và “k phù hợp cho sinh” (k≈5).")
+    body(doc, "Một điểm phương pháp quan trọng: do mỗi câu chỉ có trung bình 1,96 văn bản liên quan, Precision bị chặn bởi trần P@k = min(|liên quan|, k)/k (đường nét đứt, Hình 4.2). Do đó Precision giảm theo k chủ yếu là hệ quả của trần giảm, không phải truy xuất kém đi — bằng chứng là tỷ lệ Precision đạt được so với trần lại TĂNG theo k (từ 56% ở k=1 lên 71% ở k=10). Khuyến nghị: khi báo cáo Precision trong miền có ít văn bản liên quan, nên trình bày kèm trần Precision hoặc dùng thêm MAP/nDCG để tránh hiểu nhầm.")
     H2(doc, "4.9. Thời gian phản hồi và tài nguyên")
     body(doc, "Toàn bộ hệ thống vận hành trên CPU với 16GB RAM. Các mốc thời gian đo được trên bộ câu hỏi: lập chỉ mục embedding đạt khoảng 7,7 đoạn/giây (toàn corpus 367.462 đoạn mất khoảng 13 giờ, chạy nền và có khả năng resume); thời gian truy xuất trung bình (gồm cả bước reranker) khoảng 7,4 giây/câu; thời gian sinh câu trả lời trung bình khoảng 45 giây/câu. Mức thời gian này chấp nhận được cho mục đích tra cứu tham khảo, dù chưa đạt thời gian thực; có thể rút ngắn đáng kể nếu triển khai trên GPU. Việc lượng tử hóa GGUF Q4 là yếu tố then chốt giúp mô hình 3,7 tỷ tham số chạy được trong giới hạn 16GB RAM.")
     figure(doc, os.path.join(FIGS, "latency.png"), "Hình 4.3. Thời gian phản hồi trung bình (truy xuất và sinh)", 9)

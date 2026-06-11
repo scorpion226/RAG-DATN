@@ -62,7 +62,7 @@ Cấu hình Hybrid + Reranker, mức văn bản:
 | 5 | 0.244 | 0.688 | 0.360 | 0.392 |
 | 10 | 0.140 | 0.778 | 0.237 | 0.196 |
 
-- F1 cực đại tại **k=3** → lấy 3–5 nguồn là cân bằng tốt (đánh đổi Precision↓/Recall↑).
+- Quét dải k mịn (k=1..10, `pr_sweep.py`): **F1 cực đại tại k=2 (0.502)**; vùng k=2–3 tối ưu cho truy xuất, hệ thống dùng k=5 mặc định để có thêm ngữ cảnh cho phần sinh.
 - **Trần Precision:** do |relevant| TB 1,96, P bị chặn trần min(|rel|,k)/k. Precision giảm theo k chủ yếu do trần giảm — tỷ lệ đạt-trần TĂNG 56%→71% → truy xuất không kém đi.
 - **Thời gian (CPU, 50 câu):** truy xuất TB ~7,4s; sinh TB ~45s.
 - **Mức độ trích dẫn:** 6/6 câu sinh (100%) trích dẫn đúng văn bản liên quan; bám điều luật (Điều 19/33/79).
