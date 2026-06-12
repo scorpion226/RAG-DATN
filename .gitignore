@@ -38,3 +38,6 @@ Thumbs.db
 
 # ===== Cache HuggingFace cục bộ (nếu nằm trong repo) =====
 .cache/
+report/generate_*.py
+report/make_*.py
+report/screenshot_web.py
