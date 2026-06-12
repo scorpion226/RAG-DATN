@@ -80,3 +80,13 @@ Cấu hình Hybrid + Reranker, mức văn bản:
   (2) ground-truth nghiêm ngặt — nhiều top-1 là văn bản dưới luật RẤT SÁT (vd 96/2023/NĐ-CP cho câu bác sĩ nước ngoài) nhưng không trùng nhãn luật → 0.200 là cận dưới.
 - Hướng cải tiến: query rewriting (đời thường → pháp lý); mở rộng nhãn sang văn bản dưới luật.
 - **Thẩm định chuyên gia:** đã lập `report/PhieuThamDinh_BoCauHoi.docx` (230 câu + nhãn, cột xác nhận/ghi chú) để chuyên gia pháp lý/GVHD ký xác nhận.
+
+## Thí nghiệm 6 — Query rewriting (query_rewrite.py, 30 câu tự nhiên)
+
+| Biến thể | Hit@1 | Hit@3 | Hit@5 | Hit@10 | MRR |
+|----------|------:|------:|------:|-------:|----:|
+| Câu gốc (baseline) | 0.200 | 0.267 | 0.367 | 0.467 | 0.271 |
+| Viết lại (PhoGPT-4B) | 0.167 | 0.233 | 0.400 | **0.533** | 0.258 |
+| Gốc + viết lại (combo) | 0.133 | 0.300 | 0.367 | 0.433 | 0.219 |
+
+**Kết quả âm có giá trị:** viết lại bằng PhoGPT-4B KHÔNG cải thiện tổng thể (MRR ↓), dù Hit@10 +0.066 cho thấy ý tưởng có tiềm năng. Nguyên nhân (soi tay 30 câu): 15/30 giữ nguyên, 13/30 mô hình TRẢ LỜI thay vì viết lại, 8/30 bịa trích dẫn ("Điều 32 Luật KCB 2009", "NĐ 11/2016" — sai/lỗi thời). → Nút thắt = instruction-following của model 4B quantized, không phải ý tưởng. Hướng: LLM mạnh hơn cho riêng bước rewrite, hoặc từ điển ánh xạ đời thường→pháp lý.

@@ -209,7 +209,8 @@ def main():
               "Bảng 3.1. Các module chính của hệ thống",
               "Bảng 4.1. So sánh các cấu hình truy xuất",
               "Bảng 4.2. Ảnh hưởng của kích thước chunk",
-              "Bảng 4.3. Precision/Recall/F1 theo số nguồn k"]:
+              "Bảng 4.3. Precision/Recall/F1 theo số nguồn k",
+              "Bảng 4.4. Ảnh hưởng của viết lại truy vấn trên câu hỏi tự nhiên"]:
         body(doc, s, justify=False, indent=False)
 
     # ===================== SECTION 2: NỘI DUNG (số Ả Rập) =====================
@@ -416,6 +417,15 @@ def main():
     body(doc, "Để kiểm tra hệ thống trong điều kiện gần thực tế hơn, đề tài bổ sung 30 câu hỏi diễn đạt tự nhiên theo kiểu người dân thường hỏi, cố ý không dùng từ vựng pháp lý (ví dụ: “Tôi muốn mở quầy thuốc ở quê thì cần bằng cấp gì?”, “Uống bia rồi lái xe máy về nhà có vi phạm không?”). Kết quả trên nhóm này thấp hơn rõ rệt so với nhóm câu mẫu: Hit@1 = 0,200 (so với 0,650), Hit@10 = 0,467 (so với 0,940), MRR = 0,271 (so với 0,764).")
     body(doc, "Phân tích các trường hợp trượt cho thấy hai nguyên nhân. Thứ nhất là khoảng cách từ vựng (lexical gap): câu hỏi đời thường (“mở quán ăn nhỏ”, “bằng cấp”) khác xa ngôn ngữ pháp lý (“cơ sở kinh doanh dịch vụ ăn uống”, “chứng chỉ hành nghề”), khiến cả BM25 lẫn embedding khó bắc cầu. Thứ hai là tính nghiêm ngặt của ground-truth: nhiều câu top-1 trả về văn bản dưới luật rất sát nhu cầu thực tế — ví dụ câu về bác sĩ nước ngoài và yêu cầu tiếng Việt trả về Nghị định 96/2023/NĐ-CP (nghị định hướng dẫn Luật Khám bệnh, chữa bệnh), câu về bảo hiểm y tế sinh viên trả về công văn hướng dẫn của Bộ Giáo dục — đúng nội dung nhưng không trùng số hiệu luật được gán nhãn, nên bị tính trượt. Như vậy con số 0,200 là cận dưới; chất lượng cảm nhận thực tế cao hơn.")
     body(doc, "Phát hiện này chỉ ra hai hướng cải tiến rõ ràng: (i) bổ sung bước viết lại truy vấn (query rewriting) — chuyển câu hỏi đời thường sang ngôn ngữ pháp lý trước khi truy xuất; và (ii) mở rộng ground-truth sang cả văn bản dưới luật liên quan. Đồng thời, để bảo đảm độ tin cậy của nhãn, đề tài đã lập Phiếu thẩm định bộ câu hỏi (toàn bộ 230 câu kèm nhãn, tệp PhieuThamDinh_BoCauHoi.docx) để chuyên gia pháp lý/giảng viên hướng dẫn rà soát và xác nhận — đưa quy trình đánh giá tiến gần chuẩn mực xây dựng tập kiểm thử có thẩm định.")
+    H2(doc, "4.12. Thí nghiệm 6 — Thử nghiệm viết lại truy vấn (query rewriting)")
+    body(doc, "Hướng cải tiến (i) ở trên được kiểm chứng ngay trong đề tài: dùng chính PhoGPT-4B viết lại 30 câu hỏi tự nhiên sang ngôn ngữ pháp lý (prompt few-shot gồm 3 ví dụ mẫu), sau đó truy xuất lại bằng (a) câu viết lại và (b) câu gốc ghép câu viết lại. Kết quả ở Bảng 4.4.")
+    table(doc, ["Biến thể truy vấn", "Hit@1", "Hit@3", "Hit@5", "Hit@10", "MRR"],
+          [["Câu gốc (baseline)", "0,200", "0,267", "0,367", "0,467", "0,271"],
+           ["Câu viết lại (rewrite)", "0,167", "0,233", "0,400", "0,533", "0,258"],
+           ["Gốc + viết lại (combo)", "0,133", "0,300", "0,367", "0,433", "0,219"]],
+          caption="Bảng 4.4. Ảnh hưởng của viết lại truy vấn trên 30 câu hỏi tự nhiên")
+    body(doc, "Kết quả là một “kết quả âm” (negative result) có giá trị: viết lại bằng PhoGPT-4B không cải thiện tổng thể (MRR giảm 0,271 → 0,258), dù Hit@10 tăng từ 0,467 lên 0,533 cho thấy ý tưởng có tiềm năng ở vùng truy xuất rộng. Phân tích thủ công 30 câu viết lại chỉ ra nguyên nhân nằm ở năng lực mô hình viết lại, không phải ở ý tưởng: 15/30 câu bị giữ nguyên (mô hình không viết lại); 13/30 câu bị mô hình trả lời luôn thay vì viết lại; 8/30 câu bị chèn trích dẫn tự bịa (ví dụ dẫn “Điều 32 Luật Khám bệnh, chữa bệnh năm 2009” hoặc “Nghị định 11/2016/NĐ-CP” — sai hoặc đã lỗi thời), thậm chí có câu bị viết lại sang sai lĩnh vực.")
+    body(doc, "Kết luận của thí nghiệm: nút thắt của query rewriting là năng lực tuân thủ chỉ dẫn (instruction-following) của mô hình 3,7 tỷ tham số đã lượng tử hóa — không đủ để thực hiện ổn định một tác vụ biến đổi văn bản có ràng buộc. Hướng khắc phục khả thi: (i) dùng một LLM mạnh hơn chỉ riêng cho bước viết lại (bước này không yêu cầu chạy cục bộ vì không chạm dữ liệu nhạy cảm); (ii) xây từ điển ánh xạ cụm từ đời thường → thuật ngữ pháp lý (mở quán ăn → cơ sở kinh doanh dịch vụ ăn uống) như một bước thay thế nhẹ và kiểm soát được. Việc thử nghiệm, định lượng nguyên nhân thất bại và đề xuất thay thế là một phần đóng góp về phương pháp của đề tài.")
 
     # ----------------------------- CHƯƠNG 5 -----------------------------
     H1(doc, "CHƯƠNG 5. KẾT LUẬN VÀ HƯỚNG PHÁT TRIỂN")
@@ -428,7 +438,7 @@ def main():
     bullet(doc, "Tốc độ sinh trên CPU (trung bình ~52 giây/câu) chưa đáp ứng yêu cầu thời gian thực.")
     bullet(doc, "Chưa đánh giá định lượng độ trung thực (faithfulness) của câu trả lời so với nguồn.")
     H2(doc, "5.4. Hướng phát triển")
-    bullet(doc, "Bổ sung bước viết lại truy vấn (query rewriting) để bắc cầu từ vựng đời thường – pháp lý, cải thiện kết quả trên câu hỏi tự nhiên.")
+    bullet(doc, "Hoàn thiện bước viết lại truy vấn: thử nghiệm với PhoGPT-4B chưa thành công do hạn chế instruction-following (Mục 4.12); hướng tiếp theo là dùng LLM mạnh hơn cho riêng bước viết lại hoặc từ điển ánh xạ đời thường – pháp lý.")
     bullet(doc, "Hoàn tất thẩm định ground-truth với chuyên gia pháp lý; mở rộng nhãn sang văn bản dưới luật liên quan; bổ sung độ đo faithfulness/groundedness tự động.")
     bullet(doc, "Áp dụng chunking theo ngữ cảnh (gắn tiêu đề văn bản vào mỗi đoạn khi mã hóa) để tăng độ chính xác.")
     bullet(doc, "Tăng tốc phần sinh (GPU hoặc dịch vụ) và hỗ trợ hội thoại đa lượt với cơ chế viết lại câu hỏi.")

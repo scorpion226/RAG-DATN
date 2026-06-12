@@ -1,0 +1,150 @@
+{
+  "results": {
+    "baseline": {
+      "Hit@1": 0.2,
+      "Hit@3": 0.267,
+      "Hit@5": 0.367,
+      "Hit@10": 0.467,
+      "MRR": 0.271,
+      "n": 30
+    },
+    "rewrite": {
+      "Hit@1": 0.167,
+      "Hit@3": 0.233,
+      "Hit@5": 0.4,
+      "Hit@10": 0.533,
+      "MRR": 0.258,
+      "n": 30
+    },
+    "combo": {
+      "Hit@1": 0.133,
+      "Hit@3": 0.3,
+      "Hit@5": 0.367,
+      "Hit@10": 0.433,
+      "MRR": 0.219,
+      "n": 30
+    }
+  },
+  "rewrites": [
+    {
+      "q": "Tôi vừa tốt nghiệp bác sĩ đa khoa, muốn được đi làm khám chữa bệnh thì phải làm những gì?",
+      "rewrite": "Để được đi làm khám chữa bệnh, bạn cần đáp ứng các điều kiện sau:"
+    },
+    {
+      "q": "Bác sĩ có được từ chối chữa cho bệnh nhân không?",
+      "rewrite": "Bác sĩ không được từ chối chữa cho bệnh nhân vì bất kỳ lý do gì, trừ khi có căn cứ hợp pháp để bác sĩ làm như vậy."
+    },
+    {
+      "q": "Đi khám bệnh mà không hài lòng, người bệnh có quyền khiếu nại hay yêu cầu gì không?",
+      "rewrite": "Theo quy định tại Điều 32 Luật Khám bệnh, chữa bệnh năm 2009 thì người bệnh có quyền khiếu nại khi không hài lòng với kết quả khám bệnh hoặc điều trị. Trong trường hợp này bạn nên liên hệ trực tiếp đến cơ sở y tế để được giải quyết theo đúng trình tự và thủ tục pháp luật."
+    },
+    {
+      "q": "Phòng khám tư nhân muốn mở cửa hoạt động thì cần giấy tờ gì?",
+      "rewrite": "Để mở cửa hoạt động, phòng khám tư nhân cần có giấy phép kinh doanh và Giấy chứng nhận đủ điều kiện an toàn thực phẩm (nếu thuộc trường hợp quy định tại Điều 34 Luật An toàn thực phẩm)."
+    },
+    {
+      "q": "Bác sĩ nước ngoài sang Việt Nam làm việc có cần biết tiếng Việt không?",
+      "rewrite": "Theo quy định tại Điều 6 Nghị định số 11/2016/NĐ-CP ngày 03/02/2016 của Chính phủ, người nước ngoài làm việc trong lĩnh vực y tế phải biết tiếng Việt thành thạo."
+    },
+    {
+      "q": "Tôi muốn mở quầy thuốc ở quê thì cần bằng cấp và điều kiện gì?",
+      "rewrite": "1. Điều kiện cấp Giấy chứng nhận cơ sở đủ điều kiện an toàn thực phẩm đối với cơ sở kinh doanh dịch vụ ăn uống là gì?"
+    },
+    {
+      "q": "Bán thuốc giả, thuốc kém chất lượng thì bị xử lý thế nào?",
+      "rewrite": "Bán thuốc giả, thuốc kém chất lượng thì bị xử lý thế nào?"
+    },
+    {
+      "q": "Quảng cáo thuốc trên mạng xã hội có được phép không?",
+      "rewrite": "Quảng cáo thuốc trên mạng xã hội có được phép không?"
+    },
+    {
+      "q": "Nhà thuốc có được tự ý tăng giá thuốc không?",
+      "rewrite": "Nhà thuốc có được tự ý tăng giá thuốc không?"
+    },
+    {
+      "q": "Ai được đứng tên chịu trách nhiệm chuyên môn cho một nhà thuốc?",
+      "rewrite": "Theo quy định tại khoản 1 Điều 41 Luật Dược 2016, người chịu trách nhiệm chuyên môn về dược của nhà thuốc là chủ cơ sở bán lẻ (người đứng tên trên giấy chứng nhận đủ điều kiện kinh doanh dược)."
+    },
+    {
+      "q": "Mở quán ăn nhỏ có cần xin giấy chứng nhận vệ sinh an toàn thực phẩm không?",
+      "rewrite": "Mở quán ăn nhỏ có cần xin giấy chứng nhận vệ sinh an toàn thực phẩm không?"
+    },
+    {
+      "q": "Bán rau quả tươi ngoài chợ phải đảm bảo những gì để an toàn?",
+      "rewrite": "Để đảm bảo an toàn khi bán rau quả tươi ngoài chợ, người kinh doanh cần tuân thủ các quy định sau:"
+    },
+    {
+      "q": "Hàng xách tay là đồ ăn nhập từ nước ngoài về bán có phải kiểm tra gì không?",
+      "rewrite": "Hàng xách tay là đồ ăn nhập từ nước ngoài về bán có phải kiểm tra gì không?"
+    },
+    {
+      "q": "Trên bao bì đồ ăn phải ghi những thông tin gì?",
+      "rewrite": "Trên bao bì đồ ăn phải ghi những thông tin gì?"
+    },
+    {
+      "q": "Sinh viên có bắt buộc phải mua bảo hiểm y tế không?",
+      "rewrite": "Theo quy định tại Điều 12 Luật Bảo hiểm y tế 2008 (sửa đổi, bổ sung năm 2014), sinh viên là đối tượng tham gia bảo hiểm y tế bắt buộc."
+    },
+    {
+      "q": "Mỗi tháng phải đóng bao nhiêu tiền bảo hiểm y tế, ai trả?",
+      "rewrite": "Mỗi tháng phải đóng bao nhiêu tiền bảo hiểm y tế, ai trả?"
+    },
+    {
+      "q": "Có thẻ BHYT thì đi viện được giảm những khoản nào?",
+      "rewrite": "Có thẻ BHYT thì đi viện được giảm những khoản nào?"
+    },
+    {
+      "q": "Trường hợp nào đi viện mà bảo hiểm y tế không chi trả?",
+      "rewrite": "Trường hợp nào đi viện mà bảo hiểm y tế không chi trả?"
+    },
+    {
+      "q": "Hút thuốc trong bệnh viện có bị phạt không?",
+      "rewrite": "Hút thuốc trong bệnh viện có bị phạt không?"
+    },
+    {
+      "q": "Vì sao trên vỏ bao thuốc lá phải in hình cảnh báo ghê rợn?",
+      "rewrite": "Trên vỏ bao thuốc lá phải in hình cảnh báo ghê rợn vì nó có thể gây ra những tác hại nghiêm trọng đến sức khỏe của người hút và cộng đồng. Hình ảnh này giúp mọi người nhận biết được các mối nguy hiểm tiềm ẩn trong việc sử dụng sản phẩm độc hại như thuốc lá, từ đó hạn chế hoặc tránh xa chúng."
+    },
+    {
+      "q": "Bán thuốc lá cho trẻ em dưới 18 tuổi có bị cấm không?",
+      "rewrite": "Bán thuốc lá cho trẻ em dưới 18 tuổi có bị cấm không?"
+    },
+    {
+      "q": "Người không hút thuốc có quyền yêu cầu người khác không hút gần mình không?",
+      "rewrite": "Theo Luật Phòng, chống tác hại của thuốc lá năm 2012 và Nghị định số 176/2013/NĐ-CP quy định xử phạt vi phạm hành chính trong lĩnh vực y tế thì người không hút thuốc có quyền yêu cầu người khác không hút gần mình."
+    },
+    {
+      "q": "Uống bia rồi lái xe máy về nhà có vi phạm pháp luật không?",
+      "rewrite": "Uống bia rồi lái xe máy về nhà có thể vi phạm pháp luật. Hành vi này bị nghiêm cấm theo Luật Phòng, chống tác hại của rượu, bia và các văn bản hướng dẫn thi hành liên quan."
+    },
+    {
+      "q": "Quán nhậu có được bán rượu cho học sinh không?",
+      "rewrite": "Quán nhậu có được bán rượu cho học sinh không?"
+    },
+    {
+      "q": "Quảng cáo bia trên tivi giờ vàng có bị hạn chế gì không?",
+      "rewrite": "1. Quảng cáo bia trên tivi giờ vàng có bị hạn chế gì không?"
+    },
+    {
+      "q": "Tôi muốn đăng ký hiến tạng sau khi qua đời thì làm thủ tục ở đâu, thế nào?",
+      "rewrite": "Tôi muốn đăng ký hiến tạng sau khi qua đời thì làm thủ tục ở đâu, thế nào?"
+    },
+    {
+      "q": "Mua bán thận có bị pháp luật cấm không?",
+      "rewrite": "Mua bán thận có bị pháp luật cấm không?"
+    },
+    {
+      "q": "Người nhiễm HIV có bị đuổi việc hay đuổi học không?",
+      "rewrite": "Theo quy định tại Điều 14 Bộ luật Lao động năm 2019, người lao động bị xử lý kỷ luật sa thải phải tuân theo trình tự sau đây:"
+    },
+    {
+      "q": "Công ty có được yêu cầu xét nghiệm HIV khi tuyển dụng không?",
+      "rewrite": "Theo quy định tại Điều 4 Luật Phòng, chống HIV/AIDS năm 2006 (sửa đổi bổ sung năm 2020), việc tuyển dụng lao động phải bảo đảm nguyên tắc phòng ngừa lây nhiễm HIV và các bệnh truyền nhiễm khác. Theo đó, người sử dụng lao động không được yêu cầu xét nghiệm bắt buộc đối với người lao động trước khi tuyển dụng."
+    },
+    {
+      "q": "Trẻ em có được tiêm vắc xin miễn phí không, chương trình nào?",
+      "rewrite": "Trẻ em có được tiêm vắc xin miễn phí không, chương trình nào?"
+    }
+  ]
+}
