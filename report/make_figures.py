@@ -14,10 +14,10 @@ plt.rcParams["font.family"] = "DejaVu Sans"  # hỗ trợ tiếng Việt
 # ---------- Hình 1: So sánh các cấu hình retrieval ----------
 configs = ["Không\ntách từ", "Vector\n+pyvi", "Vector\n+Rerank", "Hybrid", "Hybrid\n+Rerank"]
 metrics = {
-    "Hit@1":  [0.380, 0.520, 0.540, 0.500, 0.560],
-    "Hit@5":  [0.720, 0.860, 0.840, 0.860, 0.860],
-    "Hit@10": [0.840, 0.920, 0.880, 0.980, 0.920],
-    "MRR":    [0.534, 0.668, 0.667, 0.669, 0.694],
+    "Hit@1":  [0.490, 0.595, 0.625, 0.635, 0.650],
+    "Hit@5":  [0.760, 0.845, 0.850, 0.900, 0.905],
+    "Hit@10": [0.810, 0.885, 0.880, 0.960, 0.940],
+    "MRR":    [0.600, 0.704, 0.724, 0.754, 0.764],
 }
 x = np.arange(len(configs)); w = 0.2
 fig, ax = plt.subplots(figsize=(9, 4.8))
@@ -26,7 +26,7 @@ for i, (name, vals) in enumerate(metrics.items()):
     ax.bar(x + (i - 1.5) * w, vals, w, label=name, color=colors[i])
 ax.set_xticks(x); ax.set_xticklabels(configs, fontsize=9)
 ax.set_ylabel("Giá trị"); ax.set_ylim(0, 1.08)
-ax.set_title("So sánh chất lượng truy xuất giữa các cấu hình (18 câu hỏi vàng)")
+ax.set_title("So sánh chất lượng truy xuất giữa các cấu hình (200 câu hỏi vàng)")
 ax.legend(ncol=4, fontsize=9, loc="upper left")
 ax.grid(axis="y", alpha=0.3)
 for i, vals in enumerate(metrics.values()):

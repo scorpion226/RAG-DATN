@@ -360,20 +360,20 @@ def main():
     # ----------------------------- CHƯƠNG 4 -----------------------------
     H1(doc, "CHƯƠNG 4. THỰC NGHIỆM VÀ ĐÁNH GIÁ")
     H2(doc, "4.1. Thiết lập thực nghiệm")
-    body(doc, "Bộ đánh giá gồm 50 câu hỏi tiếng Việt bao phủ nhiều luật y tế trọng yếu (Khám bệnh chữa bệnh, Dược, An toàn thực phẩm, Bảo hiểm y tế, phòng chống tác hại thuốc lá/rượu bia, hiến mô tạng, HIV/AIDS, phòng bệnh). Mỗi câu hỏi được gán nhãn “văn bản liên quan” (ground-truth) là (các) luật điều chỉnh nội dung câu hỏi (trung bình 1,96 văn bản/câu). Đặc biệt, nhãn được bổ sung các Văn bản hợp nhất (VBHN) tương đương — ví dụ 39/VBHN-VPQH là bản hợp nhất Luật Dược — vì chúng có cùng nội dung luật nhưng khác số hiệu. Chỉ mục dùng toàn bộ 367.462 đoạn. Các độ đo là Hit@k, MRR (Mục 1.7) và Precision/Recall/F1@k.")
+    body(doc, "Bộ đánh giá gồm 200 câu hỏi tiếng Việt bao phủ nhiều luật y tế trọng yếu (Khám bệnh chữa bệnh, Dược, An toàn thực phẩm, Bảo hiểm y tế, phòng chống tác hại thuốc lá/rượu bia, hiến mô tạng, HIV/AIDS, phòng bệnh). Trong đó 50 câu được soạn thủ công và 150 câu được sinh tự động từ tiêu đề các “Điều” thật trong từng luật rồi đặt thành câu hỏi (ground-truth = số hiệu luật chứa Điều đó). Mỗi câu được gán nhãn “văn bản liên quan” là (các) luật điều chỉnh (trung bình 2 văn bản/câu), bổ sung các Văn bản hợp nhất (VBHN) tương đương — ví dụ 39/VBHN-VPQH là bản hợp nhất Luật Dược. Chỉ mục dùng toàn bộ 367.462 đoạn. Các độ đo là Hit@k, MRR (Mục 1.7) và Precision/Recall/F1@k.")
     H2(doc, "4.2. Kết quả tổng hợp")
     table(doc, ["Cấu hình", "Hit@1", "Hit@3", "Hit@5", "Hit@10", "MRR"],
-          [["(1) Không tách từ", "0,380", "0,640", "0,720", "0,840", "0,534"],
-           ["(2) Vector + tách từ pyvi", "0,520", "0,820", "0,860", "0,920", "0,668"],
-           ["(3) Vector + Reranker", "0,540", "0,780", "0,840", "0,880", "0,667"],
-           ["(4) Hybrid (BM25+vector)", "0,500", "0,800", "0,860", "0,980", "0,669"],
-           ["(5) Hybrid + Reranker", "0,560", "0,780", "0,860", "0,920", "0,694"]],
-          caption="Bảng 4.1. So sánh các cấu hình truy xuất (50 câu hỏi)")
+          [["(1) Không tách từ", "0,490", "0,680", "0,760", "0,810", "0,600"],
+           ["(2) Vector + tách từ pyvi", "0,595", "0,800", "0,845", "0,885", "0,704"],
+           ["(3) Vector + Reranker", "0,625", "0,815", "0,850", "0,880", "0,724"],
+           ["(4) Hybrid (BM25+vector)", "0,635", "0,855", "0,900", "0,960", "0,754"],
+           ["(5) Hybrid + Reranker", "0,650", "0,860", "0,905", "0,940", "0,764"]],
+          caption="Bảng 4.1. So sánh các cấu hình truy xuất (200 câu hỏi)")
     figure(doc, os.path.join(FIGS, "retrieval_comparison.png"), "Hình 4.1. Biểu đồ so sánh chất lượng truy xuất giữa các cấu hình", 15)
     H2(doc, "4.3. Thí nghiệm 1 — Vai trò của tách từ tiếng Việt")
-    body(doc, "So sánh cấu hình (1) và (2) trong Bảng 4.1: bổ sung bước tách từ bằng pyvi nâng Hit@1 từ 0,380 lên 0,520 (tăng 0,140), Hit@3 từ 0,640 lên 0,820 (tăng 0,180) và MRR từ 0,534 lên 0,668 (tăng 0,134). Đây là cải thiện lớn nhất trong các thí nghiệm, khẳng định giả thuyết ở Mục 1.2.1: vì PhoBERT được huấn luyện trên dữ liệu đã tách từ, việc tách từ nhất quán cả khi lập chỉ mục lẫn khi truy vấn giúp embedding của câu hỏi và đoạn cùng phân phối, từ đó khớp tốt hơn. Đây là minh chứng định lượng rõ ràng cho sự cần thiết của bước tách từ.")
+    body(doc, "So sánh cấu hình (1) và (2) trong Bảng 4.1: bổ sung bước tách từ bằng pyvi nâng Hit@1 từ 0,490 lên 0,595 (tăng 0,105), Hit@3 từ 0,680 lên 0,800 (tăng 0,120) và MRR từ 0,600 lên 0,704 (tăng 0,104). Đây là một trong những cải thiện lớn nhất, khẳng định giả thuyết ở Mục 1.2.1: vì PhoBERT được huấn luyện trên dữ liệu đã tách từ, việc tách từ nhất quán cả khi lập chỉ mục lẫn khi truy vấn giúp embedding của câu hỏi và đoạn cùng phân phối, từ đó khớp tốt hơn. Đây là minh chứng định lượng rõ ràng cho sự cần thiết của bước tách từ.")
     H2(doc, "4.4. Thí nghiệm 2 — Đóng góp của reranker")
-    body(doc, "So sánh (2) và (3): bộ reranker PhoRanker xếp lại 30 ứng viên đầu giúp Hit@1 tăng nhẹ (0,520 → 0,540) nhưng MRR gần như không đổi (0,668 → 0,667) và Hit@3 giảm (0,820 → 0,780). Như vậy trên bộ 50 câu, reranker dùng đơn lẻ cho lợi ích khiêm tốn. Tuy nhiên khi kết hợp với hybrid (cấu hình 5), reranker lại nâng Hit@1 lên cao nhất (0,560) và MRR lên cao nhất (0,694) — cho thấy reranker phát huy tác dụng tốt hơn khi đứng sau một tập ứng viên đa dạng từ hybrid. Cross-encoder đánh giá độ liên quan tinh tế hơn bi-encoder nhờ chú ý chéo (Mục 1.5), nhưng hiệu quả phụ thuộc chất lượng và độ đa dạng của tập ứng viên đầu vào.")
+    body(doc, "So sánh (2) và (3): bộ reranker PhoRanker xếp lại 30 ứng viên đầu giúp Hit@1 tăng từ 0,595 lên 0,625 (tăng 0,030) và MRR từ 0,704 lên 0,724 (tăng 0,020). Khi kết hợp với hybrid (cấu hình 5), reranker tiếp tục nâng Hit@1 lên cao nhất (0,650) và MRR lên cao nhất (0,764). Điều này phù hợp với phân tích ở Mục 1.5: cross-encoder đọc đồng thời (câu hỏi + đoạn) nên đánh giá độ liên quan tinh tế hơn bi-encoder, đẩy được tài liệu đúng lên hạng cao. Mức cải thiện của reranker khiêm tốn hơn so với tách từ hay hybrid, và phụ thuộc chất lượng tập ứng viên đầu vào — đứng sau hybrid (tập ứng viên đa dạng hơn) thì reranker phát huy tốt hơn.")
     H2(doc, "4.5. Thí nghiệm 3 — Ảnh hưởng của kích thước chunk")
     body(doc, "Trên cùng một tập 218 tài liệu (gồm các luật liên quan và tài liệu nhiễu), dữ liệu được chia đoạn theo ba cấu hình rồi đánh giá (Bảng 4.2).")
     table(doc, ["Cấu hình", "Số chunk", "Hit@1", "Hit@5", "Hit@10", "MRR"],
@@ -383,7 +383,7 @@ def main():
           caption="Bảng 4.2. Ảnh hưởng của kích thước chunk (218 tài liệu)")
     body(doc, "Cấu hình cắt 500 ký tự sinh ra gấp khoảng 2,3 lần số đoạn (8.437 so với 3.647) — tức gấp đôi chi phí embedding và lưu trữ — nhưng Hit@1 và MRR lại thấp hơn (0,944 và 0,972 so với 1,000), do đoạn quá ngắn dễ tách rời ngữ cảnh và phân tán thông tin của một “Điều” qua nhiều đoạn. Hai cấu hình ~1200 ký tự và cắt theo “Điều” cho độ chính xác bằng hoặc cao hơn với ít đoạn hơn. Cần lưu ý hạn chế: do tập đánh giá nhỏ (218 tài liệu) nên các chỉ số gần bão hòa ở mức 1,0; điểm phân biệt rõ nhất ở đây là hiệu quả chi phí. Kết quả ủng hộ lựa chọn cắt theo “Điều” cho hệ thống.")
     H2(doc, "4.6. Thí nghiệm 4 — Truy xuất hybrid")
-    body(doc, "So sánh (2), (4) và (5): hybrid BM25+vector đạt Hit@10 = 0,980 — gần như không bỏ sót, cao nhất trong các cấu hình; kết hợp thêm reranker (cấu hình 5) cho Hit@1 cao nhất (0,560) và MRR cao nhất (0,694). Quan trọng hơn về mặt định tính: với truy vấn chứa số hiệu (ví dụ “Nghị định 96/2023/NĐ-CP quy định gì?”), cơ chế hybrid kèm nhận diện số hiệu trả về đúng văn bản, trong khi vector thuần thường trượt do không nắm được chuỗi số hiệu. Đây là minh chứng rõ cho luận điểm BM25 bù đắp điểm yếu từ vựng của embedding (Mục 1.4). Tổng hợp lại, cấu hình Hybrid + Reranker được chọn cho hệ thống vì cân bằng tốt nhất giữa độ chính xác ở hạng đầu (Hit@1, MRR) và độ phủ (Hit@10).")
+    body(doc, "So sánh (2), (4) và (5): hybrid BM25+vector nâng Hit@10 từ 0,885 lên 0,960 (gần như không bỏ sót) và MRR từ 0,704 lên 0,754; kết hợp thêm reranker (cấu hình 5) cho Hit@1 cao nhất (0,650) và MRR cao nhất (0,764). Quan trọng hơn về mặt định tính: với truy vấn chứa số hiệu (ví dụ “Nghị định 96/2023/NĐ-CP quy định gì?”), cơ chế hybrid kèm nhận diện số hiệu trả về đúng văn bản, trong khi vector thuần thường trượt do không nắm được chuỗi số hiệu. Đây là minh chứng rõ cho luận điểm BM25 bù đắp điểm yếu từ vựng của embedding (Mục 1.4). Tổng hợp lại, cấu hình Hybrid + Reranker được chọn cho hệ thống vì cân bằng tốt nhất giữa độ chính xác ở hạng đầu (Hit@1, MRR) và độ phủ (Hit@10).")
     H2(doc, "4.7. Phân tích lỗi và bàn luận")
     body(doc, "Phân tích các câu bị trượt cho thấy hai nguyên nhân chính. Thứ nhất, một số câu hỏi gần với văn bản dưới luật (thông tư, quyết định của Cục/Bộ) hơn là luật gốc, khiến hệ thống xếp văn bản dưới luật lên trên — về mặt nội dung không hẳn sai. Ví dụ, câu “Những hành vi bị nghiêm cấm trong hoạt động dược?” trả về top-1 là một quyết định của Cục Quản lý Dược thay vì Luật Dược; câu về tiêm chủng trả về Nghị định 104/2016/NĐ-CP (nghị định chuyên về tiêm chủng) — thực chất rất sát nội dung, dù không trùng số hiệu luật được gán nhãn.")
     body(doc, "Thứ hai, vấn đề ground-truth: nhiều câu trả về Văn bản hợp nhất (VBHN) tương đương thay vì luật gốc — ví dụ câu về an toàn thực phẩm trả về 61/VBHN-VPQH (bản hợp nhất Luật An toàn thực phẩm), câu về HIV trả về 33/VBHN-VPQH (bản hợp nhất Luật phòng, chống HIV/AIDS) — đúng nội dung nhưng khác số hiệu. Nếu không tính các VBHN này vào ground-truth, chỉ số sẽ bị đánh giá thấp một cách giả tạo. Vì vậy đề tài đã bổ sung VBHN tương đương vào nhãn để đánh giá công bằng — một lưu ý quan trọng khi xây dựng tập kiểm thử cho miền pháp luật.")
@@ -391,21 +391,21 @@ def main():
     H2(doc, "4.8. Precision, Recall và ảnh hưởng của số nguồn k")
     body(doc, "Bên cạnh Hit@k và MRR, đề tài đo Precision@k và Recall@k ở mức văn bản (sau khi gộp các đoạn về số hiệu văn bản) cho cấu hình Hybrid + Reranker, đồng thời khảo sát ảnh hưởng của số nguồn k truyền cho mô hình (Bảng 4.3, Hình 4.2).")
     table(doc, ["k", "Precision@k", "Recall@k", "F1@k", "Trần P@k"],
-          [["1", "0,560", "0,363", "0,441", "1,000"],
-           ["2", "0,460", "0,552", "0,502", "0,980"],
-           ["3", "0,360", "0,632", "0,459", "0,653"],
-           ["4", "0,295", "0,678", "0,411", "0,490"],
-           ["5", "0,244", "0,688", "0,360", "0,392"],
-           ["6", "0,213", "0,713", "0,328", "0,327"],
-           ["7", "0,189", "0,728", "0,300", "0,280"],
-           ["8", "0,170", "0,748", "0,277", "0,245"],
-           ["9", "0,151", "0,748", "0,251", "0,218"],
-           ["10", "0,140", "0,778", "0,237", "0,196"]],
+          [["1", "0,650", "0,436", "0,522", "1,000"],
+           ["2", "0,510", "0,608", "0,555", "1,000"],
+           ["3", "0,398", "0,686", "0,504", "0,667"],
+           ["4", "0,323", "0,729", "0,447", "0,500"],
+           ["5", "0,268", "0,747", "0,394", "0,400"],
+           ["6", "0,232", "0,770", "0,356", "0,333"],
+           ["7", "0,202", "0,780", "0,321", "0,286"],
+           ["8", "0,180", "0,791", "0,293", "0,250"],
+           ["9", "0,161", "0,793", "0,267", "0,222"],
+           ["10", "0,146", "0,806", "0,247", "0,200"]],
           caption="Bảng 4.3. Precision/Recall/F1 theo số nguồn k = 1..10 (kèm trần Precision)")
     figure(doc, os.path.join(FIGS, "pr_sweep.png"), "Hình 4.2. Precision/Recall/F1 và trần Precision theo số nguồn k", 14)
-    body(doc, "Quét chi tiết k = 1..10 (Hình 4.2) thể hiện rõ đánh đổi kinh điển: khi k tăng, Recall tăng đều (0,363 → 0,778) trong khi Precision giảm (0,560 → 0,140). F1 — trung bình điều hòa của hai đại lượng — đạt cực đại tại k = 2 (0,502); việc quét thô trước đây (chỉ k = 1, 3, 5, 10) đã bỏ sót điểm cực đại này, cho thấy giá trị của khảo sát dải k mịn.")
-    body(doc, "So sánh ba thông số: Precision phản ánh độ “sạch” (ít nhiễu) còn Recall phản ánh độ “phủ” (ít bỏ sót); F1 cân bằng hai mặt. Vùng k = 2–3 cho F1 cao nhất nên tối ưu nếu ưu tiên độ chính xác của tập nguồn. Tuy nhiên, với bài toán sinh câu trả lời, việc cung cấp thêm ngữ cảnh (Recall cao hơn) thường có lợi cho LLM; vì vậy hệ thống chọn k = 5 làm mặc định — nơi Recall đã đạt ~0,69 mà ngữ cảnh chưa quá loãng. Đây là sự phân biệt giữa “k tối ưu cho truy xuất” (k≈2) và “k phù hợp cho sinh” (k≈5).")
-    body(doc, "Một điểm phương pháp quan trọng: do mỗi câu chỉ có trung bình 1,96 văn bản liên quan, Precision bị chặn bởi trần P@k = min(|liên quan|, k)/k (đường nét đứt, Hình 4.2). Do đó Precision giảm theo k chủ yếu là hệ quả của trần giảm, không phải truy xuất kém đi — bằng chứng là tỷ lệ Precision đạt được so với trần lại TĂNG theo k (từ 56% ở k=1 lên 71% ở k=10). Khuyến nghị: khi báo cáo Precision trong miền có ít văn bản liên quan, nên trình bày kèm trần Precision hoặc dùng thêm MAP/nDCG để tránh hiểu nhầm.")
+    body(doc, "Quét chi tiết k = 1..10 (Hình 4.2) thể hiện rõ đánh đổi kinh điển: khi k tăng, Recall tăng đều (0,436 → 0,806) trong khi Precision giảm (0,650 → 0,146). F1 — trung bình điều hòa của hai đại lượng — đạt cực đại tại k = 2 (0,555); việc quét thô (chỉ k = 1, 3, 5, 10) dễ bỏ sót điểm cực đại này, cho thấy giá trị của khảo sát dải k mịn.")
+    body(doc, "So sánh ba thông số: Precision phản ánh độ “sạch” (ít nhiễu) còn Recall phản ánh độ “phủ” (ít bỏ sót); F1 cân bằng hai mặt. Vùng k = 2–3 cho F1 cao nhất nên tối ưu nếu ưu tiên độ chính xác của tập nguồn. Tuy nhiên, với bài toán sinh câu trả lời, việc cung cấp thêm ngữ cảnh (Recall cao hơn) thường có lợi cho LLM; vì vậy hệ thống chọn k = 5 làm mặc định — nơi Recall đã đạt ~0,75 mà ngữ cảnh chưa quá loãng. Đây là sự phân biệt giữa “k tối ưu cho truy xuất” (k≈2) và “k phù hợp cho sinh” (k≈5).")
+    body(doc, "Một điểm phương pháp quan trọng: do mỗi câu chỉ có trung bình 2 văn bản liên quan, Precision bị chặn bởi trần P@k = min(|liên quan|, k)/k (đường nét đứt, Hình 4.2). Do đó Precision giảm theo k chủ yếu là hệ quả của trần giảm, không phải truy xuất kém đi — bằng chứng là tỷ lệ Precision đạt được so với trần lại TĂNG theo k (từ 65% ở k=1 lên 73% ở k=10). Khuyến nghị: khi báo cáo Precision trong miền có ít văn bản liên quan, nên trình bày kèm trần Precision hoặc dùng thêm MAP/nDCG để tránh hiểu nhầm.")
     H2(doc, "4.9. Thời gian phản hồi và tài nguyên")
     body(doc, "Toàn bộ hệ thống vận hành trên CPU với 16GB RAM. Các mốc thời gian đo được trên bộ câu hỏi: lập chỉ mục embedding đạt khoảng 7,7 đoạn/giây (toàn corpus 367.462 đoạn mất khoảng 13 giờ, chạy nền và có khả năng resume); thời gian truy xuất trung bình (gồm cả bước reranker) khoảng 7,4 giây/câu; thời gian sinh câu trả lời trung bình khoảng 45 giây/câu. Mức thời gian này chấp nhận được cho mục đích tra cứu tham khảo, dù chưa đạt thời gian thực; có thể rút ngắn đáng kể nếu triển khai trên GPU. Việc lượng tử hóa GGUF Q4 là yếu tố then chốt giúp mô hình 3,7 tỷ tham số chạy được trong giới hạn 16GB RAM.")
     figure(doc, os.path.join(FIGS, "latency.png"), "Hình 4.3. Thời gian phản hồi trung bình (truy xuất và sinh)", 9)
@@ -420,7 +420,7 @@ def main():
     H2(doc, "5.2. Tính mới và khả năng ứng dụng")
     body(doc, "Tính mới: đồ án kết hợp một cách có hệ thống các kỹ thuật phù hợp tiếng Việt và miền pháp luật — bi-encoder dựa trên PhoBERT, hybrid BM25+vector kèm nhận diện số hiệu văn bản, reranker PhoRanker và sinh có ràng buộc trích dẫn bằng PhoGPT — đồng thời chứng minh đóng góp của từng thành phần bằng thực nghiệm A/B. Điểm khác biệt so với các hệ RAG phổ thông là cơ chế nhận diện số hiệu văn bản nhằm khắc phục điểm yếu của tìm kiếm ngữ nghĩa đối với các định danh chính xác. Khả năng ứng dụng: hệ thống có thể dùng làm công cụ hỗ trợ tra cứu cho người dân, cán bộ y tế và sinh viên; vận hành trên máy phổ thông (CPU) nên dễ triển khai trong điều kiện hạn chế. Triển vọng: kiến trúc mang tính tổng quát, có thể mở rộng sang các lĩnh vực pháp luật khác và nâng cấp thành dịch vụ trực tuyến khi có hạ tầng mạnh hơn.")
     H2(doc, "5.3. Hạn chế")
-    bullet(doc, "Bộ câu hỏi đánh giá gồm 50 câu do tác giả xây dựng; tuy đã đủ lớn để cho kết quả ổn định, vẫn nên tiếp tục mở rộng và có chuyên gia pháp lý thẩm định ground-truth.")
+    bullet(doc, "Bộ câu hỏi đánh giá gồm 200 câu (50 soạn thủ công, 150 sinh tự động từ tiêu đề các Điều); các câu sinh tự động có thể trùng từ vựng với văn bản nguồn nên chỉ số có phần thuận lợi hơn — nên bổ sung thêm câu hỏi diễn đạt tự nhiên và có chuyên gia pháp lý thẩm định ground-truth.")
     bullet(doc, "Tốc độ sinh trên CPU (trung bình ~52 giây/câu) chưa đáp ứng yêu cầu thời gian thực.")
     bullet(doc, "Chưa đánh giá định lượng độ trung thực (faithfulness) của câu trả lời so với nguồn.")
     H2(doc, "5.4. Hướng phát triển")
