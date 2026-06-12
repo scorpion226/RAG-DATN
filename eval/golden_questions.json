@@ -1398,5 +1398,251 @@
   "relevant": [
    "44/2019/QH14"
   ]
+ },
+ {
+  "q": "Tôi vừa tốt nghiệp bác sĩ đa khoa, muốn được đi làm khám chữa bệnh thì phải làm những gì?",
+  "relevant": [
+   "15/2023/QH15"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Bác sĩ có được từ chối chữa cho bệnh nhân không?",
+  "relevant": [
+   "15/2023/QH15"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Đi khám bệnh mà không hài lòng, người bệnh có quyền khiếu nại hay yêu cầu gì không?",
+  "relevant": [
+   "15/2023/QH15"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Phòng khám tư nhân muốn mở cửa hoạt động thì cần giấy tờ gì?",
+  "relevant": [
+   "15/2023/QH15"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Bác sĩ nước ngoài sang Việt Nam làm việc có cần biết tiếng Việt không?",
+  "relevant": [
+   "15/2023/QH15"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Tôi muốn mở quầy thuốc ở quê thì cần bằng cấp và điều kiện gì?",
+  "relevant": [
+   "105/2016/QH13",
+   "44/2024/QH15",
+   "39/VBHN-VPQH"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Bán thuốc giả, thuốc kém chất lượng thì bị xử lý thế nào?",
+  "relevant": [
+   "105/2016/QH13",
+   "44/2024/QH15",
+   "39/VBHN-VPQH"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Quảng cáo thuốc trên mạng xã hội có được phép không?",
+  "relevant": [
+   "105/2016/QH13",
+   "44/2024/QH15",
+   "39/VBHN-VPQH"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Nhà thuốc có được tự ý tăng giá thuốc không?",
+  "relevant": [
+   "105/2016/QH13",
+   "44/2024/QH15",
+   "39/VBHN-VPQH"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Ai được đứng tên chịu trách nhiệm chuyên môn cho một nhà thuốc?",
+  "relevant": [
+   "105/2016/QH13",
+   "44/2024/QH15",
+   "39/VBHN-VPQH"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Mở quán ăn nhỏ có cần xin giấy chứng nhận vệ sinh an toàn thực phẩm không?",
+  "relevant": [
+   "55/2010/QH12",
+   "61/VBHN-VPQH",
+   "02/VBHN-VPQH"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Bán rau quả tươi ngoài chợ phải đảm bảo những gì để an toàn?",
+  "relevant": [
+   "55/2010/QH12",
+   "61/VBHN-VPQH",
+   "02/VBHN-VPQH"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Hàng xách tay là đồ ăn nhập từ nước ngoài về bán có phải kiểm tra gì không?",
+  "relevant": [
+   "55/2010/QH12",
+   "61/VBHN-VPQH",
+   "02/VBHN-VPQH"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Trên bao bì đồ ăn phải ghi những thông tin gì?",
+  "relevant": [
+   "55/2010/QH12",
+   "61/VBHN-VPQH",
+   "02/VBHN-VPQH"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Sinh viên có bắt buộc phải mua bảo hiểm y tế không?",
+  "relevant": [
+   "46/2014/QH13",
+   "51/2024/QH15"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Mỗi tháng phải đóng bao nhiêu tiền bảo hiểm y tế, ai trả?",
+  "relevant": [
+   "46/2014/QH13",
+   "51/2024/QH15"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Có thẻ BHYT thì đi viện được giảm những khoản nào?",
+  "relevant": [
+   "46/2014/QH13",
+   "51/2024/QH15"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Trường hợp nào đi viện mà bảo hiểm y tế không chi trả?",
+  "relevant": [
+   "46/2014/QH13",
+   "51/2024/QH15"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Hút thuốc trong bệnh viện có bị phạt không?",
+  "relevant": [
+   "09/2012/QH13",
+   "08/VBHN-VPQH",
+   "11/VBHN-VPQH",
+   "15/VBHN-VPQH"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Vì sao trên vỏ bao thuốc lá phải in hình cảnh báo ghê rợn?",
+  "relevant": [
+   "09/2012/QH13",
+   "08/VBHN-VPQH",
+   "11/VBHN-VPQH",
+   "15/VBHN-VPQH"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Bán thuốc lá cho trẻ em dưới 18 tuổi có bị cấm không?",
+  "relevant": [
+   "09/2012/QH13",
+   "08/VBHN-VPQH",
+   "11/VBHN-VPQH",
+   "15/VBHN-VPQH"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Người không hút thuốc có quyền yêu cầu người khác không hút gần mình không?",
+  "relevant": [
+   "09/2012/QH13",
+   "08/VBHN-VPQH",
+   "11/VBHN-VPQH",
+   "15/VBHN-VPQH"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Uống bia rồi lái xe máy về nhà có vi phạm pháp luật không?",
+  "relevant": [
+   "44/2019/QH14"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Quán nhậu có được bán rượu cho học sinh không?",
+  "relevant": [
+   "44/2019/QH14"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Quảng cáo bia trên tivi giờ vàng có bị hạn chế gì không?",
+  "relevant": [
+   "44/2019/QH14"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Tôi muốn đăng ký hiến tạng sau khi qua đời thì làm thủ tục ở đâu, thế nào?",
+  "relevant": [
+   "75/2006/QH11"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Mua bán thận có bị pháp luật cấm không?",
+  "relevant": [
+   "75/2006/QH11"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Người nhiễm HIV có bị đuổi việc hay đuổi học không?",
+  "relevant": [
+   "64/2006/QH11",
+   "33/VBHN-VPQH"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Công ty có được yêu cầu xét nghiệm HIV khi tuyển dụng không?",
+  "relevant": [
+   "64/2006/QH11",
+   "33/VBHN-VPQH"
+  ],
+  "type": "natural"
+ },
+ {
+  "q": "Trẻ em có được tiêm vắc xin miễn phí không, chương trình nào?",
+  "relevant": [
+   "114/2025/QH15"
+  ],
+  "type": "natural"
  }
 ]

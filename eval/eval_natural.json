@@ -1,0 +1,123 @@
+{
+  "natural": {
+    "Hit@1": 0.2,
+    "Hit@3": 0.267,
+    "Hit@5": 0.367,
+    "Hit@10": 0.467,
+    "MRR": 0.271,
+    "n": 30
+  },
+  "templated_ref": "xem eval200.json (200 câu)",
+  "hard_cases": [
+    {
+      "q": "Tôi vừa tốt nghiệp bác sĩ đa khoa, muốn được đi làm khám chữa bệnh thì phải làm những gì?",
+      "rank": null,
+      "top1": "1080/VPB6"
+    },
+    {
+      "q": "Phòng khám tư nhân muốn mở cửa hoạt động thì cần giấy tờ gì?",
+      "rank": null,
+      "top1": "4542/QĐ-BYT"
+    },
+    {
+      "q": "Bác sĩ nước ngoài sang Việt Nam làm việc có cần biết tiếng Việt không?",
+      "rank": null,
+      "top1": "96/2023/NĐ-CP"
+    },
+    {
+      "q": "Tôi muốn mở quầy thuốc ở quê thì cần bằng cấp và điều kiện gì?",
+      "rank": null,
+      "top1": "1584/QĐ-UBND"
+    },
+    {
+      "q": "Bán thuốc giả, thuốc kém chất lượng thì bị xử lý thế nào?",
+      "rank": null,
+      "top1": "696/QĐ-QLD"
+    },
+    {
+      "q": "Quảng cáo thuốc trên mạng xã hội có được phép không?",
+      "rank": null,
+      "top1": "680/BTTTT-VP"
+    },
+    {
+      "q": "Nhà thuốc có được tự ý tăng giá thuốc không?",
+      "rank": null,
+      "top1": "3847/QLD-GT"
+    },
+    {
+      "q": "Mở quán ăn nhỏ có cần xin giấy chứng nhận vệ sinh an toàn thực phẩm không?",
+      "rank": null,
+      "top1": "1679/QĐ-UBND"
+    },
+    {
+      "q": "Bán rau quả tươi ngoài chợ phải đảm bảo những gì để an toàn?",
+      "rank": null,
+      "top1": "1971/QĐ-UBND"
+    },
+    {
+      "q": "Hàng xách tay là đồ ăn nhập từ nước ngoài về bán có phải kiểm tra gì không?",
+      "rank": 6,
+      "top1": "Khôngsố21"
+    },
+    {
+      "q": "Trên bao bì đồ ăn phải ghi những thông tin gì?",
+      "rank": 8,
+      "top1": "03/2017/TT-BNNPTNT"
+    },
+    {
+      "q": "Sinh viên có bắt buộc phải mua bảo hiểm y tế không?",
+      "rank": null,
+      "top1": "4296/BGDĐT-CTHSSV"
+    },
+    {
+      "q": "Có thẻ BHYT thì đi viện được giảm những khoản nào?",
+      "rank": null,
+      "top1": "1335/QĐ-UBND"
+    },
+    {
+      "q": "Trường hợp nào đi viện mà bảo hiểm y tế không chi trả?",
+      "rank": null,
+      "top1": "824/QĐ-BYT"
+    },
+    {
+      "q": "Hút thuốc trong bệnh viện có bị phạt không?",
+      "rank": null,
+      "top1": "3502/QĐ-BYT"
+    },
+    {
+      "q": "Vì sao trên vỏ bao thuốc lá phải in hình cảnh báo ghê rợn?",
+      "rank": 7,
+      "top1": "4803/BYT-PC"
+    },
+    {
+      "q": "Bán thuốc lá cho trẻ em dưới 18 tuổi có bị cấm không?",
+      "rank": 4,
+      "top1": "34/2005/LPQT"
+    },
+    {
+      "q": "Uống bia rồi lái xe máy về nhà có vi phạm pháp luật không?",
+      "rank": null,
+      "top1": "488/CĐ-TTg"
+    },
+    {
+      "q": "Quán nhậu có được bán rượu cho học sinh không?",
+      "rank": 5,
+      "top1": "4316/CT-BGDĐT"
+    },
+    {
+      "q": "Mua bán thận có bị pháp luật cấm không?",
+      "rank": null,
+      "top1": "40/2025/TT-BYT"
+    },
+    {
+      "q": "Công ty có được yêu cầu xét nghiệm HIV khi tuyển dụng không?",
+      "rank": 4,
+      "top1": "4744/QĐ-BYT"
+    },
+    {
+      "q": "Trẻ em có được tiêm vắc xin miễn phí không, chương trình nào?",
+      "rank": null,
+      "top1": "601/QĐ-BYT"
+    }
+  ]
+}

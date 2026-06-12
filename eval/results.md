@@ -68,3 +68,15 @@ Cấu hình Hybrid + Reranker, mức văn bản:
 - **Thời gian (CPU):** truy xuất TB ~7s; sinh TB ~45s (đo trên mẫu).
 - **Mức độ trích dẫn:** 6/6 câu sinh (100%) trích dẫn đúng văn bản liên quan; bám điều luật (Điều 19/33/79).
 - Quan sát: mô hình đôi khi nêu chi tiết phụ chưa chính xác (vd nhắc "Luật 2009" dù nguồn là 15/2023/QH15) → RAG giảm nhưng chưa loại bỏ hết sai sót phần sinh.
+
+## Thí nghiệm 5 — Câu hỏi diễn đạt tự nhiên (eval_natural.py, 30 câu type=natural)
+
+| Nhóm | Hit@1 | Hit@3 | Hit@5 | Hit@10 | MRR |
+|------|------:|------:|------:|-------:|----:|
+| Câu mẫu (200) | 0.650 | 0.860 | 0.905 | 0.940 | 0.764 |
+| **Câu tự nhiên (30)** | **0.200** | 0.267 | 0.367 | 0.467 | **0.271** |
+
+- Nguyên nhân: (1) **lexical gap** đời thường↔pháp lý ("mở quán ăn nhỏ" vs "cơ sở kinh doanh dịch vụ ăn uống");
+  (2) ground-truth nghiêm ngặt — nhiều top-1 là văn bản dưới luật RẤT SÁT (vd 96/2023/NĐ-CP cho câu bác sĩ nước ngoài) nhưng không trùng nhãn luật → 0.200 là cận dưới.
+- Hướng cải tiến: query rewriting (đời thường → pháp lý); mở rộng nhãn sang văn bản dưới luật.
+- **Thẩm định chuyên gia:** đã lập `report/PhieuThamDinh_BoCauHoi.docx` (230 câu + nhãn, cột xác nhận/ghi chú) để chuyên gia pháp lý/GVHD ký xác nhận.
