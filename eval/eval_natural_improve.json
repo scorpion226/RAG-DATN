@@ -1,0 +1,89 @@
+{
+  "n_done": 100,
+  "results": {
+    "baseline": {
+      "Hit@1": 0.16,
+      "Hit@3": 0.37,
+      "Hit@5": 0.46,
+      "Hit@10": 0.54,
+      "MRR": 0.283,
+      "n": 100
+    },
+    "dict": {
+      "Hit@1": 0.23,
+      "Hit@3": 0.45,
+      "Hit@5": 0.52,
+      "Hit@10": 0.64,
+      "MRR": 0.362,
+      "n": 100
+    },
+    "hyde": {
+      "Hit@1": 0.09,
+      "Hit@3": 0.27,
+      "Hit@5": 0.41,
+      "Hit@10": 0.51,
+      "MRR": 0.216,
+      "n": 100
+    },
+    "dict_hyde": {
+      "Hit@1": 0.08,
+      "Hit@3": 0.29,
+      "Hit@5": 0.42,
+      "Hit@10": 0.6,
+      "MRR": 0.229,
+      "n": 100
+    }
+  },
+  "samples": [
+    {
+      "idx": 550,
+      "q": "Tôi vừa tốt nghiệp bác sĩ đa khoa, muốn được đi làm khám chữa bệnh thì phải làm những gì?",
+      "hyde": "Để được đi làm khám chữa bệnh, bạn cần phải có giấy phép hành nghề do cơ quan nhà nước cấp. Bạn nên liên hệ với Sở Y tế hoặc Bộ Y tế để biết thêm thông tin về thủ tục và điều kiện xin cấp chứng chỉ này.  Ngoài ra, khi đã trở thành bác sĩ đa khoa thực thụ (có giấy phép hành nghề), bạn cần phải tham g"
+    },
+    {
+      "idx": 551,
+      "q": "Bác sĩ có được từ chối chữa cho bệnh nhân không?",
+      "hyde": "Theo quy định tại Điều 6, Luật Khám bệnh chữa bệnh 2009 về quyền từ chối khám bệnh và chữa bệnh thì:  1. Được từ chối khám bệnh, chữa bệnh nếu trong quá trình khám bệnh, chữa bệnh mà tiên lượng bệnh vượt quá khả năng hoặc trái với phạm vi hoạt động chuyên môn của mình. 2. Được từ chối những trường h"
+    },
+    {
+      "idx": 552,
+      "q": "Đi khám bệnh mà không hài lòng, người bệnh có quyền khiếu nại hay yêu cầu gì không?",
+      "hyde": "Theo quy định tại Điều 6, Luật Khám bệnh chữa bệnh 2009:  1. Người hành nghề khám bệnh, chữa bệnh có quyền từ chối khám bệnh, chữa bệnh nếu trong quá trình khám bệnh, chữa bệnh mà tiên lượng bệnh vượt quá khả năng hoặc trái với phạm vi hoạt động chuyên môn của mình. 2. Người hành nghề khám bệnh, chữ"
+    },
+    {
+      "idx": 553,
+      "q": "Phòng khám tư nhân muốn mở cửa hoạt động thì cần giấy tờ gì?",
+      "hyde": "Theo quy định tại Điều 42 Nghị định 109/2016/NĐ-CP, phòng khám tư nhân muốn mở cửa hoạt động cần có các giấy tờ sau:  1. Giấy phép hoạt động do Sở Y tế cấp. 2. Giấy chứng nhận đăng ký kinh doanh (bản sao công chứng). 3. Chứng chỉ hành nghề của người chịu trách nhiệm chuyên môn kỹ thuật và danh sách "
+    },
+    {
+      "idx": 554,
+      "q": "Bác sĩ nước ngoài sang Việt Nam làm việc có cần biết tiếng Việt không?",
+      "hyde": "Theo quy định tại Điều 6 Nghị định số 109/2016/NĐ-CP ngày 01 tháng 7 năm 2016 của Chính phủ về việc quy định cấp chứng chỉ hành nghề đối với người hành nghề và cấp giấy phép hoạt động đối với cơ sở khám bệnh, chữa bệnh (sau đây gọi tắt là Nghị định số 109/2016/NĐ-CP), bác sĩ nước ngoài sang Việt Nam"
+    },
+    {
+      "idx": 555,
+      "q": "Tôi muốn mở quầy thuốc ở quê thì cần bằng cấp và điều kiện gì?",
+      "hyde": "Theo quy định tại Điều 18 Luật Dược 2016, người chịu trách nhiệm chuyên môn về dược của quầy thuốc phải có một trong các văn bằng sau đây tùy thuộc vào loại hình và phạm vi kinh doanh:  1. Bằng tốt nghiệp đại học ngành dược (sau đây gọi là \"Bằng dược sĩ\"). 2. Bằng tốt nghiệp đại học ngành y đa khoa "
+    },
+    {
+      "idx": 556,
+      "q": "Bán thuốc giả, thuốc kém chất lượng thì bị xử lý thế nào?",
+      "hyde": "1. Người nào sản xuất, buôn bán hàng giả là lương thực, thực phẩm thì bị phạt tù từ 02 năm đến 05 năm. 2. Phạm tội thuộc một trong các trường hợp sau đây, thì bị phạt tù từ 05 năm đến 10 năm: a) Có tổ chức; b) Có tính chất chuyên nghiệp; c) Tái phạm nguy hiểm; d) Lợi dụng chức vụ, quyền hạn; đ) Lợi "
+    },
+    {
+      "idx": 557,
+      "q": "Quảng cáo thuốc trên mạng xã hội có được phép không?",
+      "hyde": "Theo quy định tại khoản 2 Điều 3 Nghị định 181/2013/NĐ-CP, được sửa đổi bởi điểm a và điểm b khoản 1 Điều 5 Nghị định số 28/2017/NĐ-CP:  2. Quảng cáo thuốc là việc sử dụng các phương tiện nhằm giới thiệu đến  công chúng sản phẩm có chứa dược chất mới, dược liệu có tên thực vật, động vật,  nấm, vi si"
+    },
+    {
+      "idx": 558,
+      "q": "Nhà thuốc có được tự ý tăng giá thuốc không?",
+      "hyde": "Theo quy định tại khoản 1 Điều 6 Luật Dược 2016, hành vi bị nghiêm cấm trong kinh doanh dược là lợi dụng việc kinh doanh thuốc để buôn bán thuốc giả, thuốc nhập lậu, thuốc không rõ nguồn gốc xuất xứ; sản xuất, đưa ra lưu hành thuốc tại Việt Nam thuốc chưa được phép lưu hành; quảng cáo, niêm yết giá "
+    },
+    {
+      "idx": 559,
+      "q": "Ai được đứng tên chịu trách nhiệm chuyên môn cho một nhà thuốc?",
+      "hyde": "Theo quy định tại khoản 1 Điều 41 Nghị định số 54/2017/NĐ-CP ngày 08 tháng 05 năm 2017 của Chính phủ quy định chi tiết một số điều và biện pháp thi hành Luật Dược, người đứng tên chịu trách nhiệm chuyên môn cho nhà thuốc phải có Chứng chỉ hành nghề dược phù hợp với từng hình thức tổ chức kinh doanh "
+    }
+  ]
+}

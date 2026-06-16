@@ -1,0 +1,42 @@
+{
+  "bgeHybrid_nat_strict": {
+    "Hit@1": 0.14,
+    "Hit@3": 0.32,
+    "Hit@5": 0.39,
+    "Hit@10": 0.5,
+    "MRR": 0.251,
+    "n": 100
+  },
+  "bgeHybrid_nat_topic": {
+    "Hit@1": 0.21,
+    "Hit@3": 0.43,
+    "Hit@5": 0.52,
+    "Hit@10": 0.61,
+    "MRR": 0.338,
+    "n": 100
+  },
+  "bgeHybrid_sample": {
+    "Hit@1": 0.645,
+    "Hit@3": 0.855,
+    "Hit@5": 0.905,
+    "Hit@10": 0.945,
+    "MRR": 0.761,
+    "n": 200
+  },
+  "bgeHybrid_dict_nat_strict": {
+    "Hit@1": 0.16,
+    "Hit@3": 0.39,
+    "Hit@5": 0.49,
+    "Hit@10": 0.64,
+    "MRR": 0.306,
+    "n": 100
+  },
+  "bgeHybrid_dict_nat_topic": {
+    "Hit@1": 0.25,
+    "Hit@3": 0.53,
+    "Hit@5": 0.61,
+    "Hit@10": 0.74,
+    "MRR": 0.41,
+    "n": 100
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "summary": {
+    "n_folds": 5,
+    "ftrerank_strict_Hit@1": [
+      0.785,
+      0.026
+    ],
+    "ftrerank_strict_MRR": [
+      0.831,
+      0.027
+    ],
+    "ftrerank_topic_Hit@10": [
+      0.921,
+      0.042
+    ],
+    "norerank_strict_Hit@1": [
+      0.29,
+      0.076
+    ]
+  },
+  "per_fold": [
+    {
+      "fold": 0,
+      "n_test": 48,
+      "norerank_strict": {
+        "Hit@1": 0.167,
+        "Hit@3": 0.438,
+        "Hit@5": 0.521,
+        "Hit@10": 0.729,
+        "MRR": 0.346,
+        "n": 48
+      },
+      "ftrerank_strict": {
+        "Hit@1": 0.792,
+        "Hit@3": 0.854,
+        "Hit@5": 0.854,
+        "Hit@10": 0.854,
+        "MRR": 0.823,
+        "n": 48
+      },
+      "ftrerank_topic": {
+        "Hit@1": 0.792,
+        "Hit@3": 0.896,
+        "Hit@5": 0.917,
+        "Hit@10": 0.917,
+        "MRR": 0.849,
+        "n": 48
+      }
+    },
+    {
+      "fold": 1,
+      "n_test": 47,
+      "norerank_strict": {
+        "Hit@1": 0.34,
+        "Hit@3": 0.596,
+        "Hit@5": 0.66,
+        "Hit@10": 0.809,
+        "MRR": 0.494,
+        "n": 47
+      },
+      "ftrerank_strict": {
+        "Hit@1": 0.787,
+        "Hit@3": 0.915,
+        "Hit@5": 0.915,
+        "Hit@10": 0.915,
+        "MRR": 0.844,
+        "n": 47
+      },
+      "ftrerank_topic": {
+        "Hit@1": 0.83,
+        "Hit@3": 0.957,
+        "Hit@5": 0.957,
+        "Hit@10": 0.979,
+        "MRR": 0.889,
+        "n": 47
+      }
+    },
+    {
+      "fold": 2,
+      "n_test": 46,
+      "norerank_strict": {
+        "Hit@1": 0.391,
+        "Hit@3": 0.565,
+        "Hit@5": 0.696,
+        "Hit@10": 0.804,
+        "MRR": 0.51,
+        "n": 46
+      },
+      "ftrerank_strict": {
+        "Hit@1": 0.739,
+        "Hit@3": 0.826,
+        "Hit@5": 0.826,
+        "Hit@10": 0.826,
+        "MRR": 0.783,
+        "n": 46
+      },
+      "ftrerank_topic": {
+        "Hit@1": 0.761,
+        "Hit@3": 0.826,
+        "Hit@5": 0.848,
+        "Hit@10": 0.848,
+        "MRR": 0.799,
+        "n": 46
+      }
+    },
+    {
+      "fold": 3,
+      "n_test": 44,
+      "norerank_strict": {
+        "Hit@1": 0.295,
+        "Hit@3": 0.568,
+        "Hit@5": 0.682,
+        "Hit@10": 0.818,
+        "MRR": 0.467,
+        "n": 44
+      },
+      "ftrerank_strict": {
+        "Hit@1": 0.818,
+        "Hit@3": 0.909,
+        "Hit@5": 0.909,
+        "Hit@10": 0.909,
+        "MRR": 0.864,
+        "n": 44
+      },
+      "ftrerank_topic": {
+        "Hit@1": 0.818,
+        "Hit@3": 0.932,
+        "Hit@5": 0.932,
+        "Hit@10": 0.932,
+        "MRR": 0.875,
+        "n": 44
+      }
+    },
+    {
+      "fold": 4,
+      "n_test": 43,
+      "norerank_strict": {
+        "Hit@1": 0.256,
+        "Hit@3": 0.512,
+        "Hit@5": 0.744,
+        "Hit@10": 0.86,
+        "MRR": 0.439,
+        "n": 43
+      },
+      "ftrerank_strict": {
+        "Hit@1": 0.791,
+        "Hit@3": 0.884,
+        "Hit@5": 0.907,
+        "Hit@10": 0.907,
+        "MRR": 0.843,
+        "n": 43
+      },
+      "ftrerank_topic": {
+        "Hit@1": 0.791,
+        "Hit@3": 0.907,
+        "Hit@5": 0.93,
+        "Hit@10": 0.93,
+        "MRR": 0.851,
+        "n": 43
+      }
+    }
+  ]
+}

@@ -9,13 +9,16 @@ PhoRanker dựa trên PhoBERT -> đầu vào cũng cần tách từ (pyvi), gi�
 """
 from pyvi import ViTokenizer
 from sentence_transformers import CrossEncoder
+import torch
 
 RERANK_MODEL = "itdainb/PhoRanker"
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 
 class Reranker:
-    def __init__(self, model_name=RERANK_MODEL, max_length=256):
-        self.model = CrossEncoder(model_name, max_length=max_length, device="cpu")
+    def __init__(self, model_name=RERANK_MODEL, max_length=256, device=None):
+        self.model = CrossEncoder(model_name, max_length=max_length,
+                                  device=device or DEVICE)
 
     def rerank(self, query, hits, top_k=None):
         """hits: list dict có 'text' & 'metadata'. Trả về hits sắp xếp lại theo điểm cross-encoder."""

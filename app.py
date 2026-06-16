@@ -34,11 +34,20 @@ def retriever():
     global _retriever
     if _retriever is None:
         use_rerank = _flag("USE_RERANK")
-        if _flag("USE_HYBRID"):
+        if _flag("USE_BGE"):
+            # Cấu hình tốt nhất toàn cục (Mục 4.16–4.17): bge-m3 vector + từ điển + mở rộng
+            # ngữ nghĩa + RERANKER FINE-TUNE (PhoRanker). Cần collection bge_m3 + models/ft-reranker-bge.
+            _ft = os.path.join(os.path.dirname(os.path.abspath(__file__)), "models", "ft-reranker-bge")
+            _has_ft = os.path.exists(os.path.join(_ft, "config.json"))
+            _retriever = Retriever(collection="bge_m3", model="BAAI/bge-m3", segment=False,
+                                   expand=True, fp16=True, sem_expand=True, sem_K=3, sem_tau=0.45,
+                                   use_rerank=_has_ft, rerank_model=_ft if _has_ft else None,
+                                   n_candidates=30)
+        elif _flag("USE_HYBRID"):
             from hybrid import HybridRetriever
-            _retriever = HybridRetriever(use_rerank=use_rerank)
+            _retriever = HybridRetriever(use_rerank=use_rerank, expand=_flag("USE_QUERY_EXPAND"))
         else:
-            _retriever = Retriever(use_rerank=use_rerank)
+            _retriever = Retriever(use_rerank=use_rerank, expand=_flag("USE_QUERY_EXPAND"))
     return _retriever
 
 
@@ -60,7 +69,8 @@ def health():
     try:
         return {"status": "ok", "vectors": retriever().count(),
                 "llm_mode": os.environ.get("LLM_MODE", "mock"),
-                "rerank": _flag("USE_RERANK"), "hybrid": _flag("USE_HYBRID")}
+                "rerank": _flag("USE_RERANK"), "hybrid": _flag("USE_HYBRID"),
+                "query_expand": _flag("USE_QUERY_EXPAND"), "bge": _flag("USE_BGE")}
     except Exception as e:
         return {"status": "error", "detail": str(e)}
 

@@ -11,6 +11,7 @@ import re, pickle
 from functools import lru_cache
 from pyvi import ViTokenizer
 from sentence_transformers import SentenceTransformer
+import torch
 import chromadb
 import bm25s
 
@@ -18,18 +19,24 @@ CHROMA_DIR = "chroma_db"; COLLECTION = "legal_medical"
 EMBED_MODEL = "bkai-foundation-models/vietnamese-bi-encoder"
 BM25_DIR = "bm25_index"; META_PKL = "bm25_meta.pkl"
 RRF_C = 60
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 # Mẫu số hiệu VBQPPL VN: 15/2023/QH15, 147/2025/NĐ-CP, 01/2026/TT-BYT, 08/QĐ-QLD...
 DOCNUM_RE = re.compile(r"\b\d+\s*/\s*(?:\d{2,4}\s*/\s*)?[A-ZĐ][\w.\-/]*", re.UNICODE)
 
 
 class HybridRetriever:
-    def __init__(self, use_rerank=False, n_each=30):
-        self.model = SentenceTransformer(EMBED_MODEL, device="cpu")
-        self.coll = chromadb.PersistentClient(path=CHROMA_DIR).get_collection(COLLECTION)
+    def __init__(self, use_rerank=False, n_each=30, expand=False,
+                 embed_model=EMBED_MODEL, collection=COLLECTION, segment=True, fp16=False):
+        self.model = SentenceTransformer(embed_model, device=DEVICE, trust_remote_code=True)
+        if fp16 and DEVICE == "cuda":
+            self.model.half()
+        self.segment = segment        # tách từ truy vấn (PhoBERT cần; bge-m3 dùng text thô)
+        self.coll = chromadb.PersistentClient(path=CHROMA_DIR).get_collection(collection)
         self.bm25 = bm25s.BM25.load(BM25_DIR)
         with open(META_PKL, "rb") as f:
             self.meta = pickle.load(f)
         self.n_each = n_each
+        self.expand = expand          # mở rộng truy vấn bằng từ điển đời thường->pháp lý
         self.reranker = None
         if use_rerank:
             from rerank import Reranker
@@ -39,7 +46,7 @@ class HybridRetriever:
         return self.coll.count()
 
     def _vector(self, query, n, where):
-        seg = ViTokenizer.tokenize(query)
+        seg = ViTokenizer.tokenize(query) if self.segment else query
         emb = self.model.encode([seg], normalize_embeddings=True).tolist()
         r = self.coll.query(query_embeddings=emb, n_results=n, where=where,
                             include=["documents", "metadatas"])
@@ -62,8 +69,14 @@ class HybridRetriever:
     def search(self, query, k=5, where=None, only_effective=None):
         if only_effective is None:  # suy ra từ where để đồng bộ giao diện với Retriever
             only_effective = bool(where and where.get("effect_status") == "In effect")
-        vec = self._vector(query, self.n_each, where)
-        bm = self._bm25(query, self.n_each, only_effective)
+        # Mở rộng truy vấn (đời thường -> pháp lý) chỉ cho khâu TRUY XUẤT;
+        # nhận diện số hiệu và rerank vẫn dùng câu hỏi GỐC (giữ đúng ý người dùng).
+        qr = query
+        if self.expand:
+            from query_expand import expand_query
+            qr = expand_query(query)
+        vec = self._vector(qr, self.n_each, where)
+        bm = self._bm25(qr, self.n_each, only_effective)
         # RRF fusion theo chunk_id
         scores, store = {}, {}
         for lst in (vec, bm):

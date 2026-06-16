@@ -19,23 +19,32 @@ from functools import lru_cache
 from pyvi import ViTokenizer
 from sentence_transformers import SentenceTransformer
 import chromadb
+import torch
 
 CHROMA_DIR = "chroma_db"
 COLLECTION = "legal_medical"
 EMBED_MODEL = "bkai-foundation-models/vietnamese-bi-encoder"
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 
 class Retriever:
     def __init__(self, chroma_dir=CHROMA_DIR, collection=COLLECTION, model=EMBED_MODEL,
-                 use_rerank=False, n_candidates=30):
-        self.model = SentenceTransformer(model, device="cpu")
+                 use_rerank=False, n_candidates=30, segment=True, expand=False, fp16=False,
+                 sem_expand=False, sem_K=3, sem_tau=0.45, rerank_model=None):
+        self.model = SentenceTransformer(model, device=DEVICE, trust_remote_code=True)
+        if fp16 and DEVICE == "cuda":
+            self.model.half()
+        self.segment = segment      # tách từ (PhoBERT cần; bge-m3 dùng text thô)
+        self.expand = expand        # mở rộng truy vấn bằng từ điển đời thường->pháp lý
+        self.sem_expand = sem_expand  # mở rộng ngữ nghĩa bằng lexicon (chỉ dùng với bge-m3)
+        self.sem_K, self.sem_tau = sem_K, sem_tau
         self.client = chromadb.PersistentClient(path=chroma_dir)
         self.coll = self.client.get_collection(collection)
         self.n_candidates = n_candidates
         self.reranker = None
         if use_rerank:
             from rerank import Reranker
-            self.reranker = Reranker()
+            self.reranker = Reranker(model_name=rerank_model) if rerank_model else Reranker()
 
     def count(self):
         return self.coll.count()
@@ -43,8 +52,20 @@ class Retriever:
     def search(self, query, k=5, where=None):
         """Trả về list dict: {text, score, metadata}. 'where' = lọc metadata Chroma.
         Nếu bật reranker: lấy n_candidates ứng viên rồi xếp lại bằng cross-encoder."""
-        seg = ViTokenizer.tokenize(query)
-        qemb = self.model.encode([seg], normalize_embeddings=True).tolist()
+        qr = query
+        if self.expand:
+            from query_expand import expand_query
+            qr = expand_query(query)
+        seg = ViTokenizer.tokenize(qr) if self.segment else qr
+        qemb = self.model.encode([seg], normalize_embeddings=True)
+        if self.sem_expand:
+            from enhance import semantic_terms
+            terms = semantic_terms(qemb[0], self.sem_K, self.sem_tau)
+            if terms:
+                qr2 = qr + " " + " ".join(terms)
+                seg2 = ViTokenizer.tokenize(qr2) if self.segment else qr2
+                qemb = self.model.encode([seg2], normalize_embeddings=True)
+        qemb = qemb.tolist()
         n = max(self.n_candidates, k) if self.reranker else k
         res = self.coll.query(query_embeddings=qemb, n_results=n, where=where,
                               include=["documents", "metadatas", "distances"])

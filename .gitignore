@@ -41,3 +41,11 @@ Thumbs.db
 report/generate_*.py
 report/make_*.py
 report/screenshot_web.py
+
+# ===== Phiên bge-m3 / fine-tune: file nặng & log (sinh lại được) =====
+train/*.npy
+train/*.pkl
+*.out
+*.err
+*.jsonl
+report/*_moi.docx

@@ -1,0 +1,618 @@
+[
+ {
+  "law": "75/2006/QH11",
+  "term": "bộ phận cơ thể người",
+  "cues": [
+   "phần",
+   "hình",
+   "thành",
+   "nhiều",
+   "loại",
+   "khác"
+  ]
+ },
+ {
+  "law": "75/2006/QH11",
+  "term": "noãn",
+  "cues": [
+   "trứng",
+   "phôi",
+   "phẩm",
+   "trình",
+   "phát",
+   "triển"
+  ]
+ },
+ {
+  "law": "75/2006/QH11",
+  "term": "bộ phận cơ thể không tái sinh",
+  "cues": [
+   "phận",
+   "khỏi",
+   "không",
+   "sinh",
+   "phát",
+   "triển"
+  ]
+ },
+ {
+  "law": "75/2006/QH11",
+  "term": "hiến mô, bộ phận cơ thể người",
+  "cues": [
+   "việc",
+   "nhân",
+   "nguyện",
+   "hiến",
+   "phận",
+   "mình"
+  ]
+ },
+ {
+  "law": "75/2006/QH11",
+  "term": "lấy mô, bộ phận cơ thể người",
+  "cues": [
+   "việc",
+   "tách",
+   "phận",
+   "hiến",
+   "sống",
+   "chết"
+  ]
+ },
+ {
+  "law": "75/2006/QH11",
+  "term": "ghép mô, bộ phận cơ thể người",
+  "cues": [
+   "việc",
+   "ghép",
+   "phận",
+   "tương",
+   "hiến",
+   "lệch"
+  ]
+ },
+ {
+  "law": "64/2006/QH11",
+  "term": "nhiễm trùng cơ hội",
+  "cues": [
+   "nhiễm",
+   "trùng",
+   "giảm",
+   "miễn",
+   "dịch"
+  ]
+ },
+ {
+  "law": "64/2006/QH11",
+  "term": "kỳ thị người nhiễm hiv",
+  "cues": [
+   "thái",
+   "khinh",
+   "thường",
+   "thiếu",
+   "trọng",
+   "khác"
+  ]
+ },
+ {
+  "law": "64/2006/QH11",
+  "term": "phân biệt đối xử với người nhiễm hiv",
+  "cues": [
+   "hành",
+   "lánh",
+   "chối",
+   "tách",
+   "biệt",
+   "ngược"
+  ]
+ },
+ {
+  "law": "105/2016/QH13",
+  "term": "dược",
+  "cues": [
+   "thuốc",
+   "nguyên",
+   "liệu",
+   "động",
+   "dược",
+   "việt"
+  ]
+ },
+ {
+  "law": "105/2016/QH13",
+  "term": "thuốc",
+  "cues": [
+   "phẩm",
+   "chứa",
+   "dược",
+   "chất",
+   "liệu",
+   "dùng"
+  ]
+ },
+ {
+  "law": "105/2016/QH13",
+  "term": "nguyên liệu làm thuốc",
+  "cues": [
+   "thành",
+   "phần",
+   "tham",
+   "thuốc",
+   "dược",
+   "chất"
+  ]
+ },
+ {
+  "law": "105/2016/QH13",
+  "term": "dược chất (còn gọi",
+  "cues": [
+   "hoạt",
+   "chất",
+   "dùng",
+   "xuất",
+   "thuốc",
+   "dụng"
+  ]
+ },
+ {
+  "law": "105/2016/QH13",
+  "term": "dược liệu",
+  "cues": [
+   "nguyên",
+   "liệu",
+   "thuốc",
+   "nguồn",
+   "nhiên",
+   "thực"
+  ]
+ },
+ {
+  "law": "105/2016/QH13",
+  "term": "cảnh giác dược",
+  "cues": [
+   "việc",
+   "phát",
+   "hiện",
+   "đánh",
+   "phòng",
+   "tránh"
+  ]
+ },
+ {
+  "law": "105/2016/QH13",
+  "term": "bao bì tiếp xúc trực tiếp với thuốc",
+  "cues": [
+   "chứa",
+   "đựng",
+   "thuốc",
+   "tiếp",
+   "trực",
+   "hình"
+  ]
+ },
+ {
+  "law": "105/2016/QH13",
+  "term": "kinh doanh dược",
+  "cues": [
+   "việc",
+   "thực",
+   "hiện",
+   "công",
+   "đoạn",
+   "trình"
+  ]
+ },
+ {
+  "law": "55/2010/QH12",
+  "term": "an toàn thực phẩm",
+  "cues": [
+   "việc",
+   "thực",
+   "phẩm",
+   "không",
+   "khỏe",
+   "tính"
+  ]
+ },
+ {
+  "law": "55/2010/QH12",
+  "term": "bệnh truyền qua thực phẩm",
+  "cues": [
+   "bệnh",
+   "uống",
+   "thực",
+   "phẩm",
+   "nhiễm",
+   "nhân"
+  ]
+ },
+ {
+  "law": "55/2010/QH12",
+  "term": "chất hỗ trợ chế biến thực phẩm",
+  "cues": [
+   "chất",
+   "định",
+   "dụng",
+   "trình",
+   "biến",
+   "nguyên"
+  ]
+ },
+ {
+  "law": "55/2010/QH12",
+  "term": "chế biến thực phẩm",
+  "cues": [
+   "trình",
+   "thực",
+   "phẩm",
+   "tươi",
+   "sống",
+   "phương"
+  ]
+ },
+ {
+  "law": "55/2010/QH12",
+  "term": "cơ sở kinh doanh dịch vụ ăn uống",
+  "cues": [
+   "biến",
+   "thức",
+   "hàng",
+   "quầy",
+   "kinh",
+   "doanh"
+  ]
+ },
+ {
+  "law": "09/2012/QH13",
+  "term": "thuốc lá",
+  "cues": [
+   "phẩm",
+   "xuất",
+   "toàn",
+   "phần",
+   "nguyên",
+   "liệu"
+  ]
+ },
+ {
+  "law": "09/2012/QH13",
+  "term": "sử dụng thuốc lá",
+  "cues": [
+   "hành",
+   "nhai",
+   "ngửi",
+   "ngậm",
+   "phẩm",
+   "thuốc"
+  ]
+ },
+ {
+  "law": "09/2012/QH13",
+  "term": "nguyên liệu thuốc lá",
+  "cues": [
+   "thuốc",
+   "dạng",
+   "tách",
+   "cọng",
+   "nguyên",
+   "liệu"
+  ]
+ },
+ {
+  "law": "09/2012/QH13",
+  "term": "tác hại của thuốc lá",
+  "cues": [
+   "hưởng",
+   "việc",
+   "xuất",
+   "dụng",
+   "thuốc",
+   "khỏe"
+  ]
+ },
+ {
+  "law": "09/2012/QH13",
+  "term": "cảnh báo sức khoẻ",
+  "cues": [
+   "thông",
+   "bằng",
+   "hình",
+   "giải",
+   "thích",
+   "hưởng"
+  ]
+ },
+ {
+  "law": "09/2012/QH13",
+  "term": "kinh doanh thuốc lá",
+  "cues": [
+   "việc",
+   "thực",
+   "hiện",
+   "liên",
+   "công",
+   "đoạn"
+  ]
+ },
+ {
+  "law": "09/2012/QH13",
+  "term": "địa điểm công cộng",
+  "cues": [
+   "phục",
+   "chung",
+   "nhiều"
+  ]
+ },
+ {
+  "law": "09/2012/QH13",
+  "term": "nơi làm việc",
+  "cues": [
+   "dụng",
+   "đích",
+   "động"
+  ]
+ },
+ {
+  "law": "09/2012/QH13",
+  "term": "trong nhà",
+  "cues": [
+   "nhiều",
+   "tường",
+   "chắn",
+   "vách",
+   "ngăn",
+   "xung"
+  ]
+ },
+ {
+  "law": "44/2019/QH14",
+  "term": "rượu",
+  "cues": [
+   "uống",
+   "thực",
+   "phẩm",
+   "xuất",
+   "trình",
+   "loại"
+  ]
+ },
+ {
+  "law": "44/2019/QH14",
+  "term": "cồn thực phẩm",
+  "cues": [
+   "chất",
+   "công",
+   "thức",
+   "phân",
+   "khoa",
+   "ethanol"
+  ]
+ },
+ {
+  "law": "44/2019/QH14",
+  "term": "độ cồn",
+  "cues": [
+   "lượng",
+   "thực",
+   "phẩm",
+   "rượu",
+   "tính",
+   "phần"
+  ]
+ },
+ {
+  "law": "44/2019/QH14",
+  "term": "tác hại của rượu, bia",
+  "cues": [
+   "hưởng",
+   "động",
+   "rượu",
+   "khỏe",
+   "đình",
+   "cộng"
+  ]
+ },
+ {
+  "law": "44/2019/QH14",
+  "term": "nghiện rượu, bia",
+  "cues": [
+   "tình",
+   "trạng",
+   "thuộc",
+   "rượu",
+   "biểu",
+   "hiện"
+  ]
+ },
+ {
+  "law": "44/2019/QH14",
+  "term": "sản xuất rượu thủ công",
+  "cues": [
+   "hoạt",
+   "động",
+   "xuất",
+   "rượu",
+   "bằng",
+   "dụng"
+  ]
+ },
+ {
+  "law": "44/2019/QH14",
+  "term": "sản xuất rượu công nghiệp",
+  "cues": [
+   "hoạt",
+   "động",
+   "xuất",
+   "rượu",
+   "bằng",
+   "thiết"
+  ]
+ },
+ {
+  "law": "114/2025/QH15",
+  "term": "phòng bệnh",
+  "cues": [
+   "hoạt",
+   "động",
+   "phòng",
+   "ngăn",
+   "ngừa",
+   "phát"
+  ]
+ },
+ {
+  "law": "114/2025/QH15",
+  "term": "cơ sở y tế dự phòng",
+  "cues": [
+   "thành",
+   "định",
+   "pháp",
+   "luật",
+   "thực",
+   "hiện"
+  ]
+ },
+ {
+  "law": "114/2025/QH15",
+  "term": "giám sát trong phòng bệnh",
+  "cues": [
+   "việc",
+   "thập",
+   "phân",
+   "tích",
+   "đánh",
+   "diễn"
+  ]
+ },
+ {
+  "law": "114/2025/QH15",
+  "term": "bệnh truyền nhiễm",
+  "cues": [
+   "bệnh",
+   "truyền",
+   "trực",
+   "tiếp",
+   "gián",
+   "trung"
+  ]
+ },
+ {
+  "law": "114/2025/QH15",
+  "term": "tác nhân gây bệnh truyền nhiễm",
+  "cues": [
+   "khuẩn",
+   "sinh",
+   "trùng",
+   "nhân",
+   "khác",
+   "nguồn"
+  ]
+ },
+ {
+  "law": "114/2025/QH15",
+  "term": "trung gian truyền bệnh truyền nhiễm",
+  "cues": [
+   "trùng",
+   "động",
+   "trường",
+   "thực",
+   "phẩm",
+   "khác"
+  ]
+ },
+ {
+  "law": "114/2025/QH15",
+  "term": "người mắc bệnh truyền nhiễm",
+  "cues": [
+   "nhiễm",
+   "nhân",
+   "bệnh",
+   "truyền",
+   "biểu",
+   "hiện"
+  ]
+ },
+ {
+  "law": "114/2025/QH15",
+  "term": "người mang mầm bệnh truyền nhiễm",
+  "cues": [
+   "mang",
+   "nhân",
+   "bệnh",
+   "truyền",
+   "nhiễm",
+   "nhưng"
+  ]
+ },
+ {
+  "law": "114/2025/QH15",
+  "term": "bộ y tế",
+  "cues": [
+   "quan",
+   "chịu",
+   "trách",
+   "nhiệm",
+   "chính",
+   "thực"
+  ]
+ },
+ {
+  "law": "15/2023/QH15",
+  "term": "khám bệnh",
+  "cues": [
+   "việc",
+   "hành",
+   "nghề",
+   "khám",
+   "bệnh",
+   "chữa"
+  ]
+ },
+ {
+  "law": "15/2023/QH15",
+  "term": "chữa bệnh",
+  "cues": [
+   "việc",
+   "hành",
+   "nghề",
+   "khám",
+   "bệnh",
+   "chữa"
+  ]
+ },
+ {
+  "law": "15/2023/QH15",
+  "term": "người bệnh",
+  "cues": [
+   "dụng",
+   "dịch",
+   "khám",
+   "bệnh",
+   "chữa"
+  ]
+ },
+ {
+  "law": "15/2023/QH15",
+  "term": "người hành nghề khám bệnh, chữa bệnh",
+  "cues": [
+   "quan",
+   "thẩm",
+   "quyền",
+   "việt",
+   "giấy",
+   "phép"
+  ]
+ },
+ {
+  "law": "15/2023/QH15",
+  "term": "giấy phép hành nghề khám bệnh, chữa bệnh",
+  "cues": [
+   "quan",
+   "thẩm",
+   "quyền",
+   "việt",
+   "điều",
+   "kiện"
+  ]
+ }
+]
