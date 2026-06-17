@@ -1,0 +1,197 @@
+{
+  "summary": {
+    "n_folds": 9,
+    "split": "group-by-domain (leave-one-out)",
+    "ftrerank_Hit@1_mean_std": [
+      0.762,
+      0.18
+    ],
+    "ftrerank_MRR_mean_std": [
+      0.823,
+      0.154
+    ],
+    "norerank_Hit@1_mean": 0.311
+  },
+  "per_fold": [
+    {
+      "domain": "ATTP",
+      "n_test": 29,
+      "norerank": {
+        "Hit@1": 0.172,
+        "Hit@3": 0.379,
+        "Hit@5": 0.552,
+        "Hit@10": 0.69,
+        "MRR": 0.319,
+        "n": 29
+      },
+      "ftrerank": {
+        "Hit@1": 0.483,
+        "Hit@3": 0.793,
+        "Hit@5": 0.793,
+        "Hit@10": 0.793,
+        "MRR": 0.632,
+        "n": 29
+      }
+    },
+    {
+      "domain": "BHYT",
+      "n_test": 27,
+      "norerank": {
+        "Hit@1": 0.0,
+        "Hit@3": 0.185,
+        "Hit@5": 0.333,
+        "Hit@10": 0.63,
+        "MRR": 0.165,
+        "n": 27
+      },
+      "ftrerank": {
+        "Hit@1": 0.778,
+        "Hit@3": 0.889,
+        "Hit@5": 0.889,
+        "Hit@10": 0.889,
+        "MRR": 0.833,
+        "n": 27
+      }
+    },
+    {
+      "domain": "Duoc",
+      "n_test": 31,
+      "norerank": {
+        "Hit@1": 0.226,
+        "Hit@3": 0.613,
+        "Hit@5": 0.774,
+        "Hit@10": 0.935,
+        "MRR": 0.461,
+        "n": 31
+      },
+      "ftrerank": {
+        "Hit@1": 0.839,
+        "Hit@3": 0.968,
+        "Hit@5": 0.968,
+        "Hit@10": 0.968,
+        "MRR": 0.903,
+        "n": 31
+      }
+    },
+    {
+      "domain": "HIV",
+      "n_test": 20,
+      "norerank": {
+        "Hit@1": 0.55,
+        "Hit@3": 0.9,
+        "Hit@5": 0.95,
+        "Hit@10": 1.0,
+        "MRR": 0.733,
+        "n": 20
+      },
+      "ftrerank": {
+        "Hit@1": 0.8,
+        "Hit@3": 1.0,
+        "Hit@5": 1.0,
+        "Hit@10": 1.0,
+        "MRR": 0.9,
+        "n": 20
+      }
+    },
+    {
+      "domain": "HM",
+      "n_test": 20,
+      "norerank": {
+        "Hit@1": 0.65,
+        "Hit@3": 0.95,
+        "Hit@5": 1.0,
+        "Hit@10": 1.0,
+        "MRR": 0.785,
+        "n": 20
+      },
+      "ftrerank": {
+        "Hit@1": 0.9,
+        "Hit@3": 1.0,
+        "Hit@5": 1.0,
+        "Hit@10": 1.0,
+        "MRR": 0.942,
+        "n": 20
+      }
+    },
+    {
+      "domain": "KCB",
+      "n_test": 33,
+      "norerank": {
+        "Hit@1": 0.182,
+        "Hit@3": 0.242,
+        "Hit@5": 0.333,
+        "Hit@10": 0.545,
+        "MRR": 0.267,
+        "n": 33
+      },
+      "ftrerank": {
+        "Hit@1": 0.545,
+        "Hit@3": 0.697,
+        "Hit@5": 0.697,
+        "Hit@10": 0.697,
+        "MRR": 0.621,
+        "n": 33
+      }
+    },
+    {
+      "domain": "PB",
+      "n_test": 20,
+      "norerank": {
+        "Hit@1": 0.05,
+        "Hit@3": 0.2,
+        "Hit@5": 0.35,
+        "Hit@10": 0.55,
+        "MRR": 0.188,
+        "n": 20
+      },
+      "ftrerank": {
+        "Hit@1": 0.55,
+        "Hit@3": 0.65,
+        "Hit@5": 0.65,
+        "Hit@10": 0.65,
+        "MRR": 0.592,
+        "n": 20
+      }
+    },
+    {
+      "domain": "RB",
+      "n_test": 23,
+      "norerank": {
+        "Hit@1": 0.609,
+        "Hit@3": 0.826,
+        "Hit@5": 1.0,
+        "Hit@10": 1.0,
+        "MRR": 0.749,
+        "n": 23
+      },
+      "ftrerank": {
+        "Hit@1": 1.0,
+        "Hit@3": 1.0,
+        "Hit@5": 1.0,
+        "Hit@10": 1.0,
+        "MRR": 1.0,
+        "n": 23
+      }
+    },
+    {
+      "domain": "TL",
+      "n_test": 25,
+      "norerank": {
+        "Hit@1": 0.36,
+        "Hit@3": 0.76,
+        "Hit@5": 0.84,
+        "Hit@10": 1.0,
+        "MRR": 0.581,
+        "n": 25
+      },
+      "ftrerank": {
+        "Hit@1": 0.96,
+        "Hit@3": 1.0,
+        "Hit@5": 1.0,
+        "Hit@10": 1.0,
+        "MRR": 0.98,
+        "n": 25
+      }
+    }
+  ]
+}

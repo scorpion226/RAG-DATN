@@ -350,3 +350,22 @@ Tách 228 câu TN → **159 train / 69 test** phân tầng theo lĩnh vực (det
 | **mean±std** | | **0.290 ± 0.076** | **0.785 ± 0.026** | **0.831 ± 0.027** | **0.921 ± 0.042** |
 
 **KẾT LUẬN: reranker fine-tune ổn định qua 5 fold (std Hit@1 chỉ 0.026)** → mức ~0.785 KHÔNG do may mắn chia tập. Cải thiện 0.29→0.785 nhất quán ở mọi fold. Đủ tin cậy để báo cáo. Cảnh báo cơ chế (ưu tiên VB cấp Luật) vẫn giữ — khuyến nghị thẩm định chuyên gia về việc xếp luật gốc trên nghị định hướng dẫn.
+
+### TN14 (group-by-law CV) — Kiểm chứng nghi ngờ "reranker học theo nhãn" (góp ý GVHD, cv_reranker_bylaw.py)
+
+Leave-one-domain-out (9 lĩnh vực): mỗi fold test là 1 lĩnh vực, train trên 8 lĩnh vực còn lại → KHÔNG luật nào của tập test xuất hiện trong train (loại bỏ khả năng ghi nhớ mã luật).
+
+| Lĩnh vực test | no-rerank Hit@1 | ft-rerank Hit@1 | ft MRR |
+|---------------|----------------:|----------------:|-------:|
+| ATTP | 0.172 | 0.483 | 0.632 |
+| BHYT | 0.000 | 0.778 | 0.833 |
+| Dược | 0.226 | 0.839 | 0.903 |
+| HIV | 0.550 | 0.800 | 0.900 |
+| Hiến mô | 0.650 | 0.900 | 0.942 |
+| KCB | 0.182 | 0.545 | 0.621 |
+| Phòng bệnh | 0.050 | 0.550 | 0.592 |
+| Rượu bia | 0.609 | 1.000 | 1.000 |
+| Thuốc lá | 0.360 | 0.960 | 0.980 |
+| **mean ± std** | **0.311** | **0.762 ± 0.180** | **0.823 ± 0.154** |
+
+**KẾT LUẬN (bảo vệ phương pháp):** group-by-law Hit@1 trung bình **0.762 ≈ 0.785** (by-question) → ngay cả khi luật của lĩnh vực test chưa từng thấy khi train, reranker vẫn xếp đúng → **phần lớn LOẠI TRỪ giả thuyết memorization "ghi nhớ mã luật"**; reranker học độ liên quan tổng quát. Độ lệch cao hơn (0.18 vs 0.026) cho thấy có phụ thuộc lĩnh vực: vài lĩnh vực khó (ATTP 0.48, KCB/PB 0.55), còn lại rất cao (RB 1.0, TL 0.96). → Cảnh báo trung thực được làm rõ bằng định lượng: reranker chủ yếu học thật, một phần phụ thuộc đặc thù lĩnh vực; vẫn nên thẩm định chuyên gia (đã lập phiếu).
