@@ -49,3 +49,4 @@ train/*.pkl
 *.err
 *.jsonl
 report/*_moi.docx
+report/build_slides.py
