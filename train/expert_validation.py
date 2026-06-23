@@ -62,14 +62,14 @@ def make_docx(rows):
     h = doc.add_paragraph(); h.alignment = WD_ALIGN_PARAGRAPH.CENTER
     style_run(h.add_run("PHIẾU THẨM ĐỊNH KẾT QUẢ RERANKER (CHUYÊN GIA PHÁP LÝ)"), 14, bold=True)
     sub = doc.add_paragraph(); sub.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    style_run(sub.add_run("Đề tài: Hệ thống RAG tra cứu văn bản pháp luật/y tế — Cấu hình bge-m3 + từ điển + ngữ nghĩa + reranker fine-tune"), 11, italic=True)
+    style_run(sub.add_run("Đề tài: Hệ thống RAG tra cứu văn bản pháp luật/y tế, Cấu hình bge-m3 + từ điển + ngữ nghĩa + reranker fine-tune"), 11, italic=True)
     intro = doc.add_paragraph()
-    style_run(intro.add_run("Hướng dẫn: với mỗi câu hỏi đời thường, cột “Văn bản hệ thống xếp #1” là văn bản reranker đưa lên đầu; cột “Luật gốc (nhãn)” là luật điều chỉnh được gán nhãn. Xin chuyên gia đánh giá ở cột cuối: (A) #1 phù hợp nhất; (B) Luật gốc phù hợp hơn; (C) cả hai đều dùng được; (D) cả hai chưa đúng — và ghi chú nếu cần. Mục tiêu: kiểm chứng việc reranker ưu tiên văn bản cấp Luật có thực sự phục vụ người dùng tốt hơn không."), 10.5)
+    style_run(intro.add_run("Hướng dẫn: với mỗi câu hỏi đời thường, cột “Văn bản hệ thống xếp #1” là văn bản reranker đưa lên đầu; cột “Luật gốc (nhãn)” là luật điều chỉnh được gán nhãn. Xin chuyên gia đánh giá ở cột cuối: (A) #1 phù hợp nhất; (B) Luật gốc phù hợp hơn; (C) cả hai đều dùng được; (D) cả hai chưa đúng, và ghi chú nếu cần. Mục tiêu: kiểm chứng việc reranker ưu tiên văn bản cấp Luật có thực sự phục vụ người dùng tốt hơn không."), 10.5)
 
     n_hit = sum(1 for r in rows if r["hit"])
     stat = doc.add_paragraph()
     style_run(stat.add_run(f"Tổng số câu: {len(rows)}. Số câu #1 trùng luật gốc gán nhãn: {n_hit} ({n_hit*100//len(rows)}%). "
-                           f"Các câu còn lại #1 thường là nghị định/thông tư hướng dẫn — cần chuyên gia xác nhận mức phù hợp."), 10.5, italic=True)
+                           f"Các câu còn lại #1 thường là nghị định/thông tư hướng dẫn, cần chuyên gia xác nhận mức phù hợp."), 10.5, italic=True)
 
     cols = ["STT", "Câu hỏi (đời thường)", "Văn bản hệ thống xếp #1", "Luật gốc (nhãn)", "Đánh giá (A/B/C/D)", "Ghi chú"]
     widths = [1.0, 6.5, 8.0, 6.5, 3.0, 4.0]
@@ -82,8 +82,8 @@ def make_docx(rows):
         top1 = r["top"][0] if r["top"] else ("", "")
         rel = r["rel"][0] if r["rel"] else ("", "")
         vals = [str(idx), r["q"],
-                f"{top1[0]} — {top1[1][:90]}",
-                f"{rel[0]} — {rel[1][:80]}" + (f" (+{len(r['rel'])-1} VB)" if len(r["rel"]) > 1 else ""),
+                f"{top1[0]}, {top1[1][:90]}",
+                f"{rel[0]}, {rel[1][:80]}" + (f" (+{len(r['rel'])-1} VB)" if len(r["rel"]) > 1 else ""),
                 "", ""]
         for c, (v, w) in enumerate(zip(vals, widths)):
             cells[c].width = Cm(w)
@@ -101,7 +101,7 @@ def make_docx(rows):
 def main():
     if os.path.exists(OUT_JSON):
         rows = json.load(open(OUT_JSON, encoding="utf-8"))
-        print(f"Nạp lại {OUT_JSON} ({len(rows)} câu) — bỏ qua chạy pipeline.")
+        print(f"Nạp lại {OUT_JSON} ({len(rows)} câu), bỏ qua chạy pipeline.")
     else:
         rows = gen_data()
     make_docx(rows)
